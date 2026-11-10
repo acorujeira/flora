@@ -417,7 +417,7 @@ const READ={spreadsheetId:SHEET,range:TAB+"!A1:AZ"};
 const F={status:"Status",name:"Common name",sci:"Scientific name",qty:"Qty",unit:"Unit",kind:"Kind",notes:"Notes",check:"Check name",where:"Location",plantedOn:"Planted on",added:"Added",family:"Family",native:"Native range",layer:"Layer",height:"Height (m)",spread:"Spread (m)",light:"Light",moisture:"Moisture",ph:"Soil pH",minTemp:"Min temp (°C)",usda:"USDA zone",life:"Life cycle",leaves:"Leaves",root:"Root & spread",flowerStart:"Flower start (month)",flowerEnd:"Flower end (month)",invasive:"PT invasive list",functions:"Functions",edibility:"Edible/toxic",edible:"Edible parts",toxic:"Toxic parts",propagation:"Propagation",note:"Design notes",zone:"Zone",flowerColour:"Flower colour",harvestStart:"Harvest start (month)",harvestEnd:"Harvest end (month)",propMonths:"Propagate months",plateLink:"Plate link"};
 const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 const MONTH=["January","February","March","April","May","June","July","August","September","October","November","December"];
-const ZONES=[["understory","Oak understory"],["opening","Openings"],["creek","Creek"],["dry-bank","Dry banks"],["firebreak","Firebreak slope"],["nursery","Nursery"],["indoor","Indoor"]];
+const ZONES=[["understory","Oak understory"],["opening","Openings"],["creek","Creek"],["dry-bank","Dry banks"],["firebreak","Firebreak slope"],["nursery","Nursery"]];
 const ZN=Object.fromEntries(ZONES),ZKEY=Object.fromEntries(ZONES.map(([k,l])=>[l.toLowerCase(),k]));
 const LAYERS=["canopy","sub-canopy","shrub","herbaceous","groundcover","climber","bulb","green manure"];
 const LAYER_RANK=Object.fromEntries(LAYERS.map((l,i)=>[l,i]));
@@ -860,7 +860,6 @@ $("add-plant").addEventListener("submit",async e=>{e.preventDefault();const err=
 
 /* ---------- record view: tags, glance tiles, year strip, callouts ---------- */
 const TAGG=[["soil","Soil builders",["n-fixer","green manure","accumulator","biomass","nurse","erosion control","mulch"]],
-  ["frame","Structure",["groundcover","structure","hedge","timber","coppice","windbreak","shade"]],
   ["food","Food & medicine",["food","culinary","tea","medicinal","aromatic"]],
   ["life","Wildlife",["pollinator","wildlife"]]];
 function tagGroup(t){t=t.toLowerCase();for(const [k,,ts] of TAGG)if(ts.includes(t))return k;return"other"}
