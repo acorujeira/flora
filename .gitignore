@@ -1,0 +1,5 @@
+.DS_Store
+.claude/
+# Working briefs: they name private projects and stay off the public repo.
+FLORA-BRIEF.md
+ONE-APP.md

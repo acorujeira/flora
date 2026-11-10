@@ -1,0 +1,61 @@
+/* Service worker: keeps the app shell and the botanical plates on the device, so the app
+   opens fast and works with no signal. It never touches Google's sign-in or the Sheets API;
+   the plant data has its own offline copy in IndexedDB.
+   Change VERSION to make every device fetch the shell and plates afresh. */
+const VERSION = "v1";
+const SHELL = "flora-shell-" + VERSION, PLATES = "flora-plates-" + VERSION, FONTS = "flora-fonts-v1";
+const SHELL_FILES = ["./", "index.html", "manifest.webmanifest", "plates.json",
+  "shell/config.js", "shell/store.js", "shell/auth.js", "shell/sheets.js", "shell/shell.js",
+  "icons/icon-192.png", "icons/icon-512.png", "icons/icon-maskable-512.png", "icons/apple-touch-icon.png"];
+
+self.addEventListener("install", e => {
+  e.waitUntil(caches.open(SHELL).then(c => c.addAll(SHELL_FILES)).then(() => self.skipWaiting()));
+});
+self.addEventListener("activate", e => {
+  e.waitUntil(caches.keys()
+    .then(keys => Promise.all(keys.filter(k => k.startsWith("flora-") && ![SHELL, PLATES, FONTS].includes(k)).map(k => caches.delete(k))))
+    .then(() => self.clients.claim()));
+});
+
+/* Answer from the cache at once and fetch a fresh copy for next time. */
+function staleWhileRevalidate(req, cacheName, opts) {
+  return caches.open(cacheName).then(cache => cache.match(req, opts).then(hit => {
+    const fresh = fetch(req).then(res => { if (res && res.ok) cache.put(req, res.clone()); return res; });
+    if (hit) { fresh.catch(() => {}); return hit; }
+    return fresh;
+  }));
+}
+/* Answer from the cache; fetch only what is missing. */
+function cacheFirst(req, cacheName) {
+  return caches.open(cacheName).then(cache => cache.match(req).then(hit => hit ||
+    fetch(req).then(res => { if (res && (res.ok || res.type === "opaque")) cache.put(req, res.clone()); return res; })));
+}
+
+self.addEventListener("fetch", e => {
+  const req = e.request;
+  if (req.method !== "GET") return;
+  const url = new URL(req.url);
+  if (url.origin === self.location.origin) {
+    if (url.pathname.includes("/plates/")) e.respondWith(cacheFirst(req, PLATES));
+    else if (req.mode === "navigate") e.respondWith(staleWhileRevalidate(new Request("index.html"), SHELL).catch(() => caches.match("index.html")));
+    else e.respondWith(staleWhileRevalidate(req, SHELL, { ignoreSearch: true }));
+  } else if (url.hostname === "fonts.googleapis.com") e.respondWith(staleWhileRevalidate(req, FONTS));
+  else if (url.hostname === "fonts.gstatic.com") e.respondWith(cacheFirst(req, FONTS));
+});
+
+/* The page asks for this once it is up: fetch every plate not yet on the device, a few at a time. */
+async function cachePlates() {
+  const res = await staleWhileRevalidate(new Request("plates.json"), SHELL);
+  const plates = await res.clone().json(), urls = new Set();
+  for (const k in plates) {
+    const p = plates[k];
+    if (p.url) urls.add(p.url);
+    if (p.habit) { if (p.habit.url) urls.add(p.habit.url); if (p.habit.bare) urls.add(p.habit.bare); }
+  }
+  const cache = await caches.open(PLATES), todo = [];
+  for (const u of urls) if (!(await cache.match(u))) todo.push(u);
+  while (todo.length) {
+    await Promise.all(todo.splice(0, 6).map(u => fetch(u).then(r => { if (r.ok) return cache.put(u, r); }).catch(() => {})));
+  }
+}
+self.addEventListener("message", e => { if (e.data === "cache-plates") e.waitUntil(cachePlates()); });

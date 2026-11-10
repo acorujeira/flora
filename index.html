@@ -1,0 +1,1062 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Flora da Corujeira</title>
+<meta name="theme-color" content="#F2EEE1">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Lato:ital,wght@0,300;0,400;0,700;1,300&family=Lora:ital,wght@0,400;0,500;1,400&display=swap">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<style>
+/* Layout: paper page in the brand's clay, one sticky view bar, each view a full-width plate; the wheel sits on a dark oak panel so the flower colours glow. */
+:root{
+  --paper:#F2EEE1; --card:#FFFDF5; --clay:#E4DDC5; --rule:#D3CAAC;
+  --ink:#2C2626; --text:#343A40; --muted:#5B6259;
+  --oak:#2E352B; --oak-2:#3B4438; --oak-line:#4C5647; --on-oak:#FFFDF5; --on-oak-muted:#C9C6B4;
+  --ochre:#C08A3E; --ochre-deep:#A8662F; --ochre-pale:#EDD9B4;
+  --leaf-ever:#3E6B45; --leaf-dec:#7FA650; --leaf-soft:#B5C47A; --soil:#8A6A4F; --stone:#B8AE95;
+  --font-lockup:'EB Garamond',Garamond,'Times New Roman',serif;
+  --font-head:'Lora',Georgia,serif;
+  --font-body:'Lato','Helvetica Neue',Arial,sans-serif;
+  color-scheme:light;
+}
+html,body{background:var(--paper);color:var(--text)}
+body{font-family:var(--font-body);font-weight:300;font-size:15px;line-height:1.6;letter-spacing:.01em;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.wrap{max-width:1120px;margin:0 auto}
+h1,h2,h3{font-family:var(--font-head);font-weight:400;color:var(--ink);text-wrap:balance;margin:0}
+.lockup{font-family:var(--font-lockup);text-transform:uppercase;letter-spacing:.35em;font-size:12px;color:var(--ochre-deep)}
+header.top{padding-block:36px 18px;display:grid;gap:8px}
+header.top h1{font-size:clamp(30px,5vw,44px);line-height:1.1}
+header.top p{margin:0;max-width:62ch;color:var(--muted)}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);padding-block:10px;border-bottom:1px solid var(--rule);display:grid;gap:10px}
+.tabs,.chips{display:flex;flex-wrap:wrap;gap:6px}
+.tab{font:inherit;font-family:var(--font-head);font-size:15px;color:var(--text);background:transparent;border:1px solid transparent;border-radius:999px;padding:6px 14px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--card)}
+.tab:hover:not([aria-selected="true"]){border-color:var(--rule)}
+.chip{font:inherit;font-size:13px;border:1px solid var(--rule);background:var(--card);color:var(--text);border-radius:999px;padding:3px 11px;cursor:pointer}
+.chip[aria-pressed="true"]{border-color:var(--ochre-deep);background:var(--ochre-pale);color:var(--ink)}
+button:focus-visible,select:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--ochre-deep);outline-offset:2px}
+.status{font-size:13px;color:var(--muted);min-height:20px;padding-top:10px}
+.view{padding-top:22px}
+.view-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:12px;margin-bottom:16px}
+.view-head h2{font-size:26px}
+.view-head p{margin:4px 0 0;color:var(--muted);max-width:60ch}
+.label{font-family:var(--font-head);text-transform:uppercase;letter-spacing:.18em;font-size:11px;color:var(--muted)}
+.plate{background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:18px}
+.scroll-x{overflow-x:auto}
+/* wheel */
+.wheel-plate{background:var(--oak);border-radius:18px;padding:20px;display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:20px;color:var(--on-oak)}
+.wheel-plate svg{width:100%;max-width:680px;display:block;margin:0 auto}
+.wheel-side{display:grid;gap:14px;align-content:start;min-width:0}
+.wheel-side .label{color:var(--on-oak-muted)}
+.wheel-side h3{color:var(--on-oak);font-size:24px}
+.wheel-side p{margin:0;color:var(--on-oak-muted);font-size:14px}
+.swatch-row{display:flex;flex-wrap:wrap;gap:6px}
+.dot{width:12px;height:12px;border-radius:50%;display:inline-block;flex:none;box-shadow:inset 0 0 0 1px rgba(0,0,0,.18)}
+.month-pick{display:flex;flex-wrap:wrap;gap:4px}
+.mbtn{font:inherit;font-size:12px;width:38px;padding:4px 0;border-radius:6px;border:1px solid var(--rule);background:var(--card);color:var(--text);cursor:pointer}
+.mbtn[aria-pressed="true"]{background:var(--ochre-deep);border-color:var(--ochre-deep);color:var(--card)}
+.wheel-plate .mbtn{background:transparent;color:var(--on-oak);border-color:var(--oak-line)}
+.wheel-plate .mbtn[aria-pressed="true"]{background:var(--ochre);border-color:var(--ochre);color:var(--oak)}
+.now-list{display:flex;flex-direction:column;gap:4px;font-size:14px;max-height:260px;overflow:auto}
+.now-list button{all:unset;cursor:pointer;display:flex;align-items:center;gap:8px;color:var(--on-oak)}
+.now-list button:hover{color:var(--ochre-pale)}
+/* section */
+.sec-tools{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.sec-plate{background:linear-gradient(var(--card),var(--card));border:1px solid var(--rule);border-radius:14px;padding:10px}
+.plant-g{cursor:pointer}
+.plant-g.drag{cursor:grabbing}
+.unplaced{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+/* guilds */
+.guild-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:16px}
+.guild{background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:16px;display:grid;gap:10px;min-width:0}
+.guild h3{font-size:20px}
+.guild svg{width:100%;max-width:300px;display:block;margin:0 auto}
+.guild .note{font-size:13px;color:var(--muted);margin:0}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;border-radius:999px;padding:2px 9px;background:var(--clay);color:var(--ink)}
+.member-chips{display:flex;flex-wrap:wrap;gap:6px}
+.mchip{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;border:1px solid var(--rule);border-radius:999px;padding:2px 4px 2px 8px;background:var(--paper)}
+.mchip button{all:unset;cursor:pointer;width:18px;height:18px;border-radius:50%;text-align:center;line-height:18px;color:var(--muted)}
+.mchip button:hover{background:var(--clay);color:var(--ink)}
+select,input[type=text],input[type=number],input[type=search]{font:inherit;font-size:14px;color:var(--text);background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:6px 10px;min-width:0}
+input[type=color]{width:44px;height:32px;border:1px solid var(--rule);border-radius:8px;background:var(--card);padding:2px}
+.btn{font:inherit;font-size:14px;border-radius:8px;padding:7px 14px;cursor:pointer;border:1px solid var(--ink);background:var(--ink);color:var(--card)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--rule)}
+/* calendar */
+.cal-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-bottom:18px}
+.cal-summary .plate h3{font-size:18px;display:flex;justify-content:space-between;align-items:baseline}
+.cal-summary .plate h3 span{font-family:var(--font-body);font-size:13px;color:var(--muted)}
+.cal-summary ul{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.cal-summary li button{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-size:13px;border:1px solid var(--rule);border-radius:999px;padding:2px 9px;background:var(--paper)}
+.cal-grid{border-collapse:separate;border-spacing:0;font-size:13px;min-width:820px;width:100%}
+.cal-grid th{font-family:var(--font-head);font-weight:400;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:6px 2px;text-align:center}
+.cal-grid th.nm{text-align:left}
+.cal-grid td{padding:3px 2px;border-top:1px solid var(--clay)}
+.cal-grid td.nm{white-space:nowrap;padding-right:12px}
+.cal-grid td.nm button{all:unset;cursor:pointer}
+.cal-grid td.nm button:hover{color:var(--ochre-deep)}
+.cal-grid .now{background:rgba(192,138,62,.10)}
+.cell{display:grid;gap:2px;height:22px;align-content:center}
+.track{height:5px;border-radius:3px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--muted);align-items:center}
+.legend label{display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+/* plants list */
+.list-tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px}
+.plist{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px}
+.prow{all:unset;cursor:pointer;display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:10px;align-items:center;background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:9px 12px}
+.prow:hover{border-color:var(--ochre)}
+.prow .nm{font-family:var(--font-head);color:var(--ink);font-size:15px;line-height:1.25}
+.prow .sci{font-style:italic;font-size:12.5px;color:var(--muted)}
+.prow .qty{font-variant-numeric:tabular-nums;font-size:13px;color:var(--muted)}
+.bloom{width:28px;height:28px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
+details.add{margin-top:18px}
+details.add summary{cursor:pointer;font-family:var(--font-head);font-size:17px;color:var(--ink)}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:12px}
+.form-grid label{display:grid;gap:4px;font-size:13px;color:var(--muted)}
+.err{color:#9E2B25;font-size:13px;min-height:18px}
+/* drawer */
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(400px,100%);background:var(--card);border-left:1px solid var(--rule);z-index:20;overflow:auto;
+  padding:calc(20px + env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) calc(24px + env(safe-area-inset-bottom,0px)) 20px;box-shadow:-8px 0 30px rgba(44,38,38,.12)}
+.drawer h2{font-size:26px;line-height:1.15}
+.drawer .sci{font-style:italic;color:var(--muted)}
+.drawer .close{position:absolute;top:calc(12px + env(safe-area-inset-top,0px));right:max(12px,env(safe-area-inset-right,0px));all:unset;cursor:pointer}
+.facts{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 14px;font-size:14px;margin:16px 0}
+.facts dt{color:var(--muted)}
+.facts dd{margin:0;color:var(--text)}
+.drawer section{border-top:1px solid var(--clay);padding-top:12px;margin-top:12px}
+.drawer section h3{font-size:15px;margin-bottom:6px}
+.drawer section p{margin:0;font-size:14px}
+.edit-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:13px;color:var(--muted)}
+.badge{font-size:12px;border-radius:999px;padding:1px 8px;background:var(--ochre-pale);color:var(--ink)}
+.empty{padding:40px 20px;text-align:center;color:var(--muted)}
+.ink{mix-blend-mode:multiply}
+.bloom.has-plate{background:var(--card);box-shadow:none;border-radius:6px;overflow:hidden;display:grid;place-items:center}
+.bloom.has-plate img{width:100%;height:100%;object-fit:contain}
+.plate-fig{margin:4px 0 12px;background:var(--card);display:grid;gap:6px}
+.plate-fig img{max-height:380px;width:100%;object-fit:contain}
+.plate-fig figcaption{font-size:12px;color:var(--muted);line-height:1.45}
+.plate-fig figcaption a{color:var(--muted)}
+.plate-fig .match{display:inline-block;margin-top:2px}
+@media (max-width:820px){.wheel-plate{grid-template-columns:minmax(0,1fr)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+/* card wall */
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+.tools input[type=search]{flex:1 1 180px;max-width:320px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.view-intro{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;margin-bottom:18px}
+.view-intro h2{font-size:28px}
+.view-intro p{margin:4px 0 0;color:var(--muted);max-width:60ch}
+.stages{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;max-width:680px}
+.stage{display:grid;gap:0;text-decoration:none;background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:8px 12px;color:var(--text)}
+.stage .sp{color:var(--ink);font-size:12.5px}
+.stage .sg{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ochre-deep)}
+.stage:hover{border-color:var(--ochre)}
+.stage b{font-family:var(--font-head);font-weight:400;font-size:26px;color:var(--ink);line-height:1.1}
+.stage span{font-size:12.5px;color:var(--muted)}
+.grp{margin-top:22px;scroll-margin-top:150px}
+.grp-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-bottom:1px solid var(--rule);padding-bottom:6px;margin-bottom:12px}
+.grp-h h3{font-size:20px}
+.card{all:unset;cursor:pointer;display:grid;grid-template-rows:auto 1fr;background:var(--card);border:1px solid var(--rule);border-radius:12px;overflow:hidden;min-width:0}
+.card:hover{border-color:var(--ochre)}
+.card:focus-visible{outline:2px solid var(--ochre-deep);outline-offset:2px}
+.card .pic{aspect-ratio:4/5;display:grid;place-items:center;padding:10px;background:var(--card);min-height:0;position:relative}
+.legend-roles{display:flex;flex-wrap:wrap;gap:2px 18px}
+.rl{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--muted);padding:3px 0;border-bottom:2px solid transparent}
+.rl i{width:10px;height:10px;border-radius:3px;display:block}
+.rl:hover{color:var(--ink)}
+.rl[aria-pressed="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+.legend-roles.active .rl:not([aria-pressed="true"]){opacity:.5}
+.rl:focus-visible{outline:2px solid var(--ochre-deep);outline-offset:2px}
+@media (max-width:520px){.bar .filters input[type=search]{flex:1 1 100%;max-width:none}.bar .fsel{flex:1 1 0;min-width:0}.fsel select{width:100%}.fsel .fl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.filters #count{flex:1 1 100%}}
+.roles{position:absolute;top:8px;left:8px;display:flex;gap:3px}
+.roles i{width:9px;height:9px;border-radius:3px;display:block}
+.tag.t-soil::before,.tag.t-frame::before,.tag.t-food::before,.tag.t-life::before{content:"";display:inline-block;width:7px;height:7px;border-radius:2px;margin-right:6px;vertical-align:1px}
+.t-soil::before{background:#A0703F}.t-frame::before{background:#4E8A55}.t-food::before{background:#D9662A}.t-life::before{background:#8A63B8}
+.card .pic img,.card .pic svg{width:100%;height:100%;object-fit:contain;min-height:0}
+.card .cap{padding:8px 12px 12px;border-top:1px solid var(--clay);display:grid;gap:2px;align-content:start}
+.card .nm{font-family:var(--font-head);color:var(--ink);font-size:15px;line-height:1.25}
+.card .sci{font-style:italic;font-size:12.5px;color:var(--muted);overflow-wrap:anywhere}
+.card .meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12px;color:var(--muted);margin-top:4px}
+.notice{background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:18px;display:grid;gap:10px;justify-items:start;max-width:62ch}
+.notice p{margin:0}
+.status{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.linkbtn{all:unset;cursor:pointer;color:var(--ochre-deep);text-decoration:underline;font-size:13px}
+/* record */
+.drawer{width:min(460px,100%);box-sizing:border-box;overflow-x:hidden}
+.drawer *{min-width:0}
+.drawer img{max-width:100%}
+.plate-fig figcaption{overflow-wrap:anywhere}
+@media (max-width:520px){.drawer{border-left:0;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}}
+.rec-actions{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px}
+.rec-actions a{font-size:14px;color:var(--ochre-deep);align-self:center}
+.save-note{font-size:13px;color:var(--muted);min-height:20px}
+.fgroup{border-top:1px solid var(--clay);padding-top:12px;margin-top:14px;display:grid;gap:10px}
+.fgroup h3{font-size:15px}
+.fgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.fgrid label{display:grid;gap:3px;font-size:12.5px;color:var(--muted);min-width:0}
+.fgrid label.wide{grid-column:1/-1}
+.fgrid input,.fgrid select,.fgrid textarea{width:100%;box-sizing:border-box}
+textarea{font:inherit;font-size:14px;color:var(--text);background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:6px 10px;min-height:64px;resize:vertical}
+.fgrid .mbtn{width:auto;flex:1 0 34px}
+/* flashcards */
+.fc{max-width:480px;margin:0 auto;display:grid;gap:14px}
+.fc-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:center;font-size:13px;color:var(--muted)}
+.fc-card{all:unset;cursor:pointer;box-sizing:border-box;width:100%;background:var(--card);border:1px solid var(--rule);border-radius:18px;min-height:min(64vh,540px);display:grid;place-items:center;padding:22px;text-align:center}
+.fc-card:focus-visible{outline:2px solid var(--ochre-deep);outline-offset:2px}
+.fc-card img{max-height:min(54vh,460px);max-width:100%;object-fit:contain}
+.fc-card .hint{font-size:12px;color:var(--muted);margin-top:10px;letter-spacing:.12em;text-transform:uppercase}
+.fc-back{display:grid;gap:8px;justify-items:center}
+.fc-back img{max-height:150px}
+.fc-back h3{font-size:28px;line-height:1.15}
+.fc-back .sci{font-style:italic;color:var(--muted);font-size:16px}
+.fc-back ul{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:4px;font-size:14px;color:var(--text)}
+.fc-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fc-btns .btn{padding:12px}
+@media (max-width:420px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* navigation reads as tabs; filters are one quiet row of controls */
+.bar{border-bottom:0;gap:12px;padding-block:6px 10px}
+.tabs{flex-wrap:nowrap;gap:26px;overflow-x:auto;border-bottom:1px solid var(--rule);scrollbar-width:none}
+.tab{border:0;border-bottom:2px solid transparent;border-radius:0;padding:10px 0;white-space:nowrap;color:var(--muted);font-size:16px}
+.tab[aria-selected="true"]{background:none;color:var(--ink);border-bottom-color:var(--ochre-deep)}
+.tab:hover:not([aria-selected="true"]){color:var(--ink)}
+.filters{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center}
+.filters input[type=search]{flex:1 1 200px;max-width:300px}
+.fsel{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted)}
+.status{padding-top:4px}
+/* record: glanceable blocks */
+.drawer .sci .fam{font-style:normal}
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.pill.st{background:var(--clay)}
+.pill.warn{background:#F3D9CF;color:#7A2E1A}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.tag{font-size:12.5px;border-radius:999px;padding:3px 10px;line-height:1.3;border:1px solid transparent}
+.t-soil{background:#EADCC4;color:#5E3F22;border-color:#D8C3A0}
+.t-frame{background:#DCE8D2;color:#2C4D30;border-color:#BED3B0}
+.t-food{background:#F8DDC9;color:#84330F;border-color:#EDC0A0}
+.t-life{background:#E8DDF2;color:#4E3472;border-color:#D2C1E4}
+.t-other{background:#ECE8DC;color:#4F5550;border-color:#DAD4C3}
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:16px}
+.tile{background:var(--paper);border-radius:12px;padding:10px 12px;display:grid;gap:4px;align-content:start}
+.tl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.tv{font-family:var(--font-head);font-size:22px;color:var(--ink);line-height:1.15}
+.tv.sm{font-family:var(--font-body);font-size:15px;display:flex;align-items:center}
+.ts{font-size:12.5px;color:var(--muted)}
+.scale{display:flex;gap:4px}
+.sc{display:grid;justify-items:center;gap:1px;flex:1;color:#CFC6AE;font-size:10.5px}
+.sc small{font-size:10.5px;color:var(--muted);opacity:.55;white-space:nowrap}
+.sc.on{color:var(--ochre-deep)}
+.sc.on small{opacity:1;color:var(--ink)}
+.scale.water .sc.on{color:#3F7CAC}
+.blk{border-top:1px solid var(--clay);padding-top:12px;margin-top:14px}
+.drawer .blk h3{font-family:var(--font-body);font-weight:400;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.blk p{margin:0;font-size:14.5px}
+.year{display:grid;grid-template-columns:auto repeat(12,minmax(0,1fr));column-gap:0;row-gap:6px;align-items:center;font-size:12px}
+.ym{text-align:center;color:var(--muted);font-size:11px}
+.ym.now{color:var(--ochre-deep);font-weight:700}
+.yl{padding-right:10px;color:var(--text);font-size:12.5px}
+.yc{height:14px;display:block;padding:0 1px}
+.yc.now{background:rgba(192,138,62,.08)}
+.yc i{display:block;height:100%}
+.callouts{display:grid;gap:8px;margin-top:14px}
+.call{border-radius:12px;padding:10px 12px;display:grid;gap:2px;font-size:14px}
+.call b{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.call.ok{background:#E3EDD9;color:#2C4D30}
+.call.bad{background:#F6E0C8;color:#7A3A0E}
+.plate-fig details{font-size:12px;color:var(--muted)}
+.plate-fig summary{cursor:pointer;list-style:none;font-size:12px;color:var(--muted);text-decoration:underline;text-decoration-color:var(--rule)}
+.plate-fig summary::-webkit-details-marker{display:none}
+.plate-fig details p{margin:4px 0 0;line-height:1.45}
+/* plant filters: light and water as icon toggles, layer as a select, functions as a tick list */
+.filters2{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;position:relative}
+.ig{display:inline-flex;border:1px solid var(--rule);border-radius:10px;background:var(--card);padding:2px;gap:2px}
+.ib{all:unset;box-sizing:border-box;cursor:pointer;width:36px;height:32px;display:grid;place-items:center;border-radius:8px;color:#A79F88}
+.ib:hover{color:var(--ink)}
+.ib[aria-pressed="true"]{background:var(--ochre-pale);color:var(--ochre-deep)}
+.ig.water .ib[aria-pressed="true"]{background:#DCE7F0;color:#3F7CAC}
+.ib:focus-visible{outline:2px solid var(--ochre-deep);outline-offset:1px}
+.fdrop summary{list-style:none;cursor:pointer;font-size:14px;color:var(--text);border:1px solid var(--rule);border-radius:8px;padding:6px 10px;background:var(--card);display:inline-flex;gap:6px;align-items:center}
+.fdrop summary::-webkit-details-marker{display:none}
+.fdrop summary::after{content:"";width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);margin-left:2px}
+.fdrop[open] summary{border-color:var(--ochre-deep)}
+.fdrop.on summary{background:var(--ochre-pale);border-color:var(--ochre-deep);color:var(--ink)}
+.fpanel{position:absolute;left:0;top:calc(100% + 6px);z-index:8;width:min(380px,100%);box-sizing:border-box;max-height:62vh;overflow:auto;background:var(--card);border:1px solid var(--rule);border-radius:12px;box-shadow:0 10px 30px rgba(44,38,38,.15);padding:12px 14px;display:grid;gap:12px}
+.fg h4{margin:0 0 4px;font-family:var(--font-body);font-weight:400;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:7px}
+.fg h4 i{width:10px;height:10px;border-radius:3px;display:block}
+.fg .opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 12px}
+.fg label{display:flex;gap:7px;align-items:center;font-size:13.5px;padding:4px 0;cursor:pointer;color:var(--text);min-width:0}
+.fg label span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fg label small{color:var(--muted);margin-left:auto;font-variant-numeric:tabular-nums}
+.fg input{accent-color:var(--ochre-deep);margin:0;flex:none}
+.fmatch{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;color:var(--muted);border-top:1px solid var(--clay);padding-top:10px}
+.fmatch .sp{flex:1}
+</style>
+</head><body>
+
+<div class="wrap">
+  <header class="top">
+    <div class="lockup">A Corujeira · Plant database</div>
+    <h1>Flora da Corujeira</h1>
+    <p id="lede">Every plant in the nursery and on the land, read from the plant Sheet.</p>
+  </header>
+
+  <div class="bar">
+    <div class="tabs" role="tablist" id="tabs">
+      <button class="tab" role="tab" data-v="cards">All plants</button>
+      <button class="tab" role="tab" data-v="nursery">Nursery</button>
+      <button class="tab" role="tab" data-v="land">On the land</button>
+      <button class="tab" role="tab" data-v="learn">Flashcards</button>
+      <button class="tab" role="tab" data-v="wheel">Bloom wheel</button>
+      <button class="tab" role="tab" data-v="layers">Layers</button>
+      <button class="tab" role="tab" data-v="calendar">Calendar</button>
+    </div>
+    <div class="filters">
+      <input type="search" id="search" placeholder="Search plants" aria-label="Search plants">
+      <label class="fsel"><span class="fl">Zone</span> <select id="zone"></select></label>
+      <label class="fsel"><span class="fl">Location</span> <select id="f-loc" aria-label="Location"></select></label>
+      <label class="fsel" id="f-status-wrap"><span class="fl">Status</span> <select id="f-status"></select></label>
+      <span class="label" id="count"></span>
+    </div>
+    <div class="filters2" id="f2">
+      <div class="ig" role="group" aria-label="Light" id="f-light"></div>
+      <div class="ig water" role="group" aria-label="Water" id="f-water"></div>
+      <label class="fsel"><span class="fl">Layer</span> <select id="f-layer" aria-label="Food forest layer"></select></label>
+      <details class="fdrop" id="f-fn"><summary id="f-fn-sum">Functions</summary><div class="fpanel" id="f-fn-panel"></div></details>
+      <button class="linkbtn" id="f-clear" type="button" hidden>Clear filters</button>
+    </div>
+    <div class="legend-roles" id="f-role-wrap" role="group" aria-label="Filter by role"></div>
+  </div>
+  <div class="status"><span id="status" role="status">Opening the Sheet…</span><button class="linkbtn" id="refresh" hidden>Refresh</button></div>
+  <div class="notice" id="notice" hidden><p id="notice-text"></p><button class="btn" id="notice-btn" hidden></button></div>
+
+  <section class="view" id="v-cards" hidden>
+    <div class="view-intro" id="intro" hidden></div>
+    <div id="cards"></div>
+    <details class="add plate" id="add-box" hidden>
+      <summary>Add a plant</summary>
+      <form id="add-plant" class="form-grid">
+        <label>Common name<input type="text" id="ap-name" required></label>
+        <label>Scientific name<input type="text" id="ap-sci"></label>
+        <label>Status<select id="ap-status"></select></label>
+        <label>Quantity<input type="number" id="ap-qty" min="0" step="1"></label>
+        <label>Layer<select id="ap-layer"></select></label>
+        <label>Zone<select id="ap-zone"></select></label>
+        <div style="align-self:end"><button class="btn" type="submit">Add to the Sheet</button></div>
+      </form>
+      <div class="err" id="ap-err"></div>
+    </details>
+  </section>
+
+  <section class="view" id="v-learn" hidden>
+    <div class="fc" id="fc"></div>
+  </section>
+
+  <section class="view" id="v-wheel" hidden>
+    <div class="view-head"><div><h2>Bloom wheel</h2><p>One ring per plant, in its own flower colour, starting at January and turning clockwise. The outer band counts how many plants are in flower each month.</p></div></div>
+    <div class="wheel-plate">
+      <svg id="wheel" viewBox="0 0 700 700" role="img" aria-label="Bloom wheel of the plants"></svg>
+      <div class="wheel-side">
+        <div><div class="label" id="w-label">Hover a ring</div><h3 id="w-name">Choose a month</h3><p id="w-sub"></p></div>
+        <div class="month-pick" id="w-months"></div>
+        <div><div class="label" id="w-now-label"></div><div class="now-list" id="w-now"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="v-layers" hidden>
+    <div class="view-head"><div><h2>Layers</h2><p>A side view of one zone, drawn to scale at mature size. Drag a plant along the ground to try a position; positions stay on this device. Change the month to see what's in flower and what's bare.</p></div></div>
+    <div class="sec-tools">
+      <label class="edit-row">Zone <select id="sec-zone"></select></label>
+      <div class="month-pick" id="sec-months"></div>
+    </div>
+    <div class="sec-plate scroll-x" style="margin-top:12px"><svg id="section" viewBox="0 0 1000 520" style="min-width:760px;width:100%;display:block" role="img" aria-label="Cross-section of the selected zone"></svg></div>
+    <p class="label" style="margin-top:14px">Scale: one square of the ground grid is one metre. Trees taller than 9 m run off the top.</p>
+  </section>
+
+  <section class="view" id="v-calendar" hidden>
+    <div class="view-head"><div><h2>Calendar</h2><p>What flowers, what to harvest and what to propagate, month by month.</p></div></div>
+    <div class="month-pick" id="cal-months" style="margin-bottom:14px"></div>
+    <div class="cal-summary" id="cal-summary"></div>
+    <div class="legend" style="margin-bottom:8px">
+      <label><input type="checkbox" id="t-flower" checked> <span class="track" style="width:18px;background:#E46FA6"></span> In flower</label>
+      <label><input type="checkbox" id="t-harvest" checked> <span class="track" style="width:18px;background:var(--ochre)"></span> Harvest</label>
+      <label><input type="checkbox" id="t-prop" checked> <span class="track" style="width:18px;background:var(--leaf-ever)"></span> Propagate</label>
+    </div>
+    <div class="plate scroll-x"><table class="cal-grid" id="cal-grid"></table></div>
+  </section>
+</div>
+
+<aside class="drawer" id="drawer" hidden aria-label="Plant record"></aside>
+
+<!-- The shell: sign-in, the Sheets adapter, the offline store and the service worker. Flora's own code follows and reaches Google only through Shell. -->
+<script src="shell/config.js"></script>
+<script src="shell/store.js"></script>
+<script src="shell/auth.js"></script>
+<script src="shell/sheets.js"></script>
+<script src="shell/shell.js"></script>
+<script>
+/* One flag for everything that writes to the Sheet: the Edit button, the edit form and "Add a plant".
+   Off in this version. Turning it on also needs allowWrites and the wider scope in shell/config.js. */
+const CAN_EDIT=false;
+const SHEET="1Ql1mbK3lX0IBUdEDXO7jfJPySD2Uw2qnVL26hJm3fss",TAB="Plants",GID=329186269,KEEP="flora-sheet";
+const READ={spreadsheetId:SHEET,range:TAB+"!A1:AZ"};
+/* field key -> the Sheet's column heading. Columns are found by heading, so they can be reordered in the Sheet. */
+const F={status:"Status",name:"Common name",sci:"Scientific name",qty:"Qty",unit:"Unit",kind:"Kind",notes:"Notes",check:"Check name",where:"Location",plantedOn:"Planted on",added:"Added",family:"Family",native:"Native range",layer:"Layer",height:"Height (m)",spread:"Spread (m)",light:"Light",moisture:"Moisture",ph:"Soil pH",minTemp:"Min temp (°C)",usda:"USDA zone",life:"Life cycle",leaves:"Leaves",root:"Root & spread",flowerStart:"Flower start (month)",flowerEnd:"Flower end (month)",invasive:"PT invasive list",functions:"Functions",edibility:"Edible/toxic",edible:"Edible parts",toxic:"Toxic parts",propagation:"Propagation",note:"Design notes",zone:"Zone",flowerColour:"Flower colour",harvestStart:"Harvest start (month)",harvestEnd:"Harvest end (month)",propMonths:"Propagate months",plateLink:"Plate link"};
+const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const MONTH=["January","February","March","April","May","June","July","August","September","October","November","December"];
+const ZONES=[["understory","Oak understory"],["opening","Openings"],["creek","Creek"],["dry-bank","Dry banks"],["firebreak","Firebreak slope"],["nursery","Nursery"],["indoor","Indoor"]];
+const ZN=Object.fromEntries(ZONES),ZKEY=Object.fromEntries(ZONES.map(([k,l])=>[l.toLowerCase(),k]));
+const LAYERS=["canopy","sub-canopy","shrub","herbaceous","groundcover","climber","bulb","green manure"];
+const LAYER_RANK=Object.fromEntries(LAYERS.map((l,i)=>[l,i]));
+const NOW=new Date().getMonth()+1;
+const S={plants:{},plates:{},cols:{},values:[],view:"cards",zone:"all",loc:"all",status:"all",role:"all",month:NOW,secZone:"understory",secMonth:NOW,calMonth:NOW,open:null,editing:false,sheets:null,loaded:false,tracks:{flower:true,harvest:true,prop:true},search:"",stamp:0,fc:null,light:new Set(),water:new Set(),layer:"all",fn:new Set(),fnAll:false};
+let XPOS={};try{XPOS=JSON.parse(localStorage.getItem("atlas-x")||"{}")||{}}catch(e){}
+const $=id=>document.getElementById(id);
+const ns="http://www.w3.org/2000/svg";
+function el(tag,attrs,parent,text){const e=document.createElementNS(ns,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;if(parent)parent.appendChild(e);return e}
+function h(tag,attrs,...kids){const e=document.createElement(tag);for(const k in (attrs||{})){if(k==="on")for(const ev in attrs.on)e.addEventListener(ev,attrs.on[ev]);else if(k==="text")e.textContent=attrs[k];else if(k==="style")e.style.cssText=attrs[k];else e.setAttribute(k,attrs[k])}for(const c of kids){if(c==null)continue;e.appendChild(typeof c==="string"?document.createTextNode(c):c)}return e}
+function within(m,a,b){if(a==null||b==null)return false;return a<=b?m>=a&&m<=b:(m>=a||m<=b)}
+const inFlower=(p,m)=>within(m,p.flowerStart,p.flowerEnd);
+const inHarvest=(p,m)=>Array.isArray(p.harvest)&&within(m,p.harvest[0],p.harvest[1]);
+const inProp=(p,m)=>Array.isArray(p.propagateMonths)&&p.propagateMonths.includes(m);
+function spanLabel(a,b){return a==null?"":(a===b?MONTH[a-1]:MON[a-1]+" to "+MON[b-1])}
+function hash(s){let x=2166136261;for(const c of s){x^=c.charCodeAt(0);x=Math.imul(x,16777619)}return x>>>0}
+function rnd(seed){let s=seed||1;return()=>{s^=s<<13;s^=s>>>17;s^=s<<5;return((s>>>0)%10000)/10000}}
+function leafColour(p,m){
+  const winter=[12,1,2].includes(m), dormantSummer=[7,8,9].includes(m);
+  if(p.leaves==="deciduous"&&winter)return null;
+  if(p.leaves==="dies back in winter"&&[11,12,1,2,3].includes(m))return null;
+  if(p.leaves==="summer-dormant"&&dormantSummer)return null;
+  if(p.layer==="green manure")return [6,7,8,9].includes(m)?null:"#A9B860";
+  return p.leaves==="evergreen"?"var(--leaf-ever)":p.leaves==="deciduous"?"var(--leaf-dec)":"var(--leaf-soft)";
+}
+const isLight=hex=>{if(!hex||hex[0]!=="#")return false;const n=parseInt(hex.slice(1),16);return((n>>16&255)*299+(n>>8&255)*587+(n&255)*114)/1000>215};
+const locTop=v=>String(v||"").split(/\s*[·>\/]\s*/)[0].trim();
+function list(){const q=S.search.trim().toLowerCase();return Object.values(S.plants).filter(p=>(S.zone==="all"||p.zone===S.zone)&&(S.loc==="all"||locTop(p.raw.where).toLowerCase()===S.loc.toLowerCase())&&passTraits(p)).sort((a,b)=>a.order-b.order)}
+const slug=s=>String(s||"").toLowerCase().replace(/['’]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,60);
+const sciKey=s=>String(s||"").split(" or ")[0].split(" (")[0].toLowerCase().replace(/×/g,"x").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+const num=v=>{if(v==null||String(v).trim()==="")return null;const n=parseFloat(String(v).replace(",","."));return isNaN(n)?null:n};
+function colLetter(i){let s="";i++;while(i>0){const r=(i-1)%26;s=String.fromCharCode(65+r)+s;i=Math.floor((i-1)/26)}return s}
+
+/* ---------- the Sheet is the database: read rows, derive what the views need ---------- */
+function derive(raw,row){
+  const g=k=>String(raw[k]??"").trim();
+  const fs=num(g("flowerStart")),fe=num(g("flowerEnd")),hs=num(g("harvestStart")),he=num(g("harvestEnd")),name=g("name"),col=g("flowerColour");
+  const p={id:"r"+row,row,order:row,raw,slug:slug(name),name,sci:g("sci"),status:g("status"),qty:num(g("qty")),unit:g("unit"),layer:g("layer").toLowerCase(),
+    height:num(g("height")),spread:num(g("spread")),light:g("light"),moisture:g("moisture"),minTemp:num(g("minTemp")),leaves:g("leaves").toLowerCase(),
+    flowerStart:fs&&fe?fs:null,flowerEnd:fs&&fe?fe:null,flowerColour:/^#[0-9a-f]{6}$/i.test(col)?col:"",harvest:hs&&he?[hs,he]:null,
+    propagateMonths:(g("propMonths").match(/\d+/g)||[]).map(Number).filter(n=>n>=1&&n<=12),edible:g("edible"),toxic:g("toxic"),propagation:g("propagation"),
+    note:g("note"),check:g("check"),zone:ZKEY[g("zone").toLowerCase()]||""};
+  p.plate=S.plates[sciKey(p.sci)]||null;p.habit=p.plate&&p.plate.habit||null;
+  if(typeof XPOS[name]==="number")p.x=XPOS[name];
+  return p;
+}
+function ingest(payload,stamp){
+  const values=payload&&Array.isArray(payload.values)?payload.values:null;
+  if(!values||!values.length)return false;
+  const head=values[0].map(x=>String(x||"").trim().toLowerCase()),cols={};
+  for(const k in F){const i=head.indexOf(F[k].toLowerCase());if(i>=0)cols[k]=i}
+  if(cols.name==null)return false;
+  const plants={};
+  for(let r=1;r<values.length;r++){const row=values[r]||[];if(!String(row[cols.name]||"").trim())continue;
+    const raw={};for(const k in cols)raw[k]=row[cols[k]]==null?"":String(row[cols[k]]);
+    const p=derive(raw,r+1);plants[p.id]=p}
+  S.values=values;S.cols=cols;S.plants=plants;S.loaded=true;S.stamp=stamp||Date.now();
+  return true;
+}
+function attachPlates(){for(const id in S.plants){const p=S.plants[id];p.plate=S.plates[sciKey(p.sci)]||null;p.habit=p.plate&&p.plate.habit||null}}
+function errCopy(e,what){const c=e&&e.code,m=e&&e.message?": "+String(e.message).slice(0,160):".";
+  if(c==="signin_required")return"Sign in with Google to read the plant Sheet.";
+  if(c==="not_configured")return"Google sign-in is not set up for this app yet.";
+  if(c==="offline")return"No connection just now.";
+  if(c==="scope_missing")return"Google did not grant access to Sheets. Sign in again and tick the Sheets box.";
+  if(c==="forbidden")return"Google would not open the plant Sheet for this account"+m+" Check that the Sheet is shared with it.";
+  if(c==="not_found")return"Google could not find the plant Sheet or its Plants tab.";
+  if(c==="read_only")return"This version of the app only reads the Sheet. Change it in the Sheet itself.";
+  if(c==="server_unavailable"||c==="rate_limited")return"Google Sheets is not answering just now.";
+  if(c==="refused")return(what||"Reading the Sheet")+" was refused"+m;
+  return"The Sheet could not be reached.";
+}
+function showNotice(text,btn,fn){$("notice").hidden=!text;$("notice-text").textContent=text||"";const b=$("notice-btn");b.hidden=!btn;if(btn){b.textContent=btn;b.onclick=fn}}
+/* When the Sheet was last read, said plainly: the time alone for today, the day as well for anything older. */
+function readWhen(){if(!S.stamp)return"";const d=new Date(S.stamp),n=new Date(),hm=String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0");
+  const days=Math.round((new Date(n.getFullYear(),n.getMonth(),n.getDate())-new Date(d.getFullYear(),d.getMonth(),d.getDate()))/864e5);
+  return days===0?"at "+hm:days===1?"yesterday at "+hm:"on "+d.getDate()+" "+MON[d.getMonth()]+(d.getFullYear()===n.getFullYear()?"":" "+d.getFullYear())+" at "+hm}
+const FRESH=10*60*1000;
+function refreshBtn(label){const b=$("refresh");b.hidden=!label;b.textContent=label||""}
+function statusLine(){const n=Object.keys(S.plants).length,fresh=Date.now()-S.stamp<FRESH;
+  setStatus(n+" rows from the Sheet · "+(fresh?"read ":"last read ")+readWhen());
+  refreshBtn(Shell.auth.hasToken()?"Refresh":Shell.auth.configured()&&navigator.onLine!==false?"Sign in to refresh":"")}
+function onRead(res,stamp,keep){const ok=ingest(res,stamp);
+  if(ok){if(keep)Shell.store.set(KEEP,{values:res.values,stamp:S.stamp});showNotice("");statusLine();render()}
+  else if(!S.loaded){setStatus("");showNotice("The Sheet answered, but the Plants tab has no “Common name” column to read.")}}
+function onReadError(e){const c=e&&e.code,signIn=()=>loadOnce({interactive:true});
+  if(S.loaded){
+    /* Never block on sign-in or signal: keep showing the copy on this device and say how old it is. */
+    const why=c==="offline"?"Offline. ":c==="signin_required"||c==="not_configured"?"":errCopy(e)+" ";
+    setStatus(why+"Showing the Sheet as last read "+readWhen()+".");
+    refreshBtn(c==="offline"||c==="not_configured"?"":c==="forbidden"?"Use another account":c==="signin_required"||c==="scope_missing"?"Sign in to refresh":"Refresh");
+    $("refresh").onclick=c==="forbidden"?()=>loadOnce({interactive:true,choose:true}):signIn;
+    return}
+  setStatus("");refreshBtn("");
+  if(c==="signin_required"||c==="scope_missing")showNotice(errCopy(e),"Sign in with Google",signIn);
+  else if(c==="forbidden")showNotice(errCopy(e),"Use another account",()=>loadOnce({interactive:true,choose:true}));
+  else if(c==="not_configured")showNotice(errCopy(e)+" It needs a Google client ID in shell/config.js.");
+  else if(c==="offline")showNotice("No connection, and no copy of the Sheet on this device yet. Open the app once with signal.","Try again",()=>loadOnce());
+  else showNotice(errCopy(e),"Try again",signIn);
+}
+let loading=false;
+/* opts.interactive: a press on a sign-in control, so Google may show its window. Without it the read is unprompted. */
+async function loadOnce(opts){if(!S.sheets||loading)return;loading=true;if(!S.loaded)setStatus("Opening the Sheet…");
+  $("refresh").onclick=()=>loadOnce({interactive:true});
+  try{onRead(await S.sheets.getValues(READ,opts),Date.now(),true)}catch(e){onReadError(e)}finally{loading=false}}
+
+/* ---------- writes: one cell at a time, straight to the row in the Sheet ---------- */
+let queue=Promise.resolve();
+function note(t){const n=document.getElementById("save-note");if(n)n.textContent=t;else setStatus(t)}
+function setField(id,key,value){queue=queue.then(()=>writeCell(id,key,value)).catch(()=>{});return queue}
+async function writeCell(id,key,value){
+  const p=S.plants[id];if(!p||!S.sheets||!CAN_EDIT)return;
+  const ci=S.cols[key];if(ci==null){note("The Sheet has no “"+F[key]+"” column.");return}
+  value=String(value??"").trim();if(value===String(p.raw[key]??"").trim())return;
+  const before=p.raw[key],nameWas=p.raw.name;
+  note("Saving "+F[key]+"…");
+  try{
+    const chk=await S.sheets.getValues({spreadsheetId:SHEET,range:TAB+"!"+colLetter(S.cols.name)+p.row},{interactive:true});
+    const there=String(chk&&chk.values&&chk.values[0]&&chk.values[0][0]||"").trim();
+    if(there!==String(nameWas).trim()){note("The Sheet's rows have moved since this was read, so nothing was changed. Reading it again.");await loadOnce();return}
+    const send=key==="propMonths"&&value?"'"+value:value;
+    await S.sheets.updateValues({spreadsheetId:SHEET,range:TAB+"!"+colLetter(ci)+p.row,values:[[send]]},{interactive:true});
+    p.raw[key]=value;const np=derive(p.raw,p.row);S.plants[id]=np;
+    if(key==="minTemp"||key==="name"||key==="zone"){}
+    note("Saved to the Sheet: "+F[key]+".");render();
+  }catch(e){
+    p.raw[key]=before;
+    if(e&&e.code==="server_unavailable"){note("Google Sheets did not confirm that change. Reading the Sheet again to see what it holds.");await loadOnce()}
+    else note(errCopy(e,"Changing the Sheet"));
+    render(true);
+  }
+}
+async function addPlant(d){
+  if(!S.sheets||!CAN_EDIT)throw{code:"read_only"};
+  let last=0;S.values.forEach((r,i)=>{if(i&&String((r||[])[S.cols.name]||"").trim())last=i+1});
+  let row=Math.max(last,1)+1;
+  if((S.values[row-1]||[]).some(c=>String(c||"").trim()))row=S.values.length+1;
+  const width=Math.max(...Object.values(S.cols))+1,end=colLetter(width-1);
+  const chk=await S.sheets.getValues({spreadsheetId:SHEET,range:`${TAB}!A${row}:${end}${row}`},{interactive:true});
+  if(chk&&chk.values&&chk.values.some(r=>r.some(c=>String(c||"").trim()))){await loadOnce();throw{code:"moved"}}
+  const cells=Array(width).fill("");const put=(k,v)=>{if(S.cols[k]!=null&&v!=null)cells[S.cols[k]]=String(v)};
+  for(const k in d)put(k,d[k]);
+  const t=new Date();put("added",t.getFullYear()+"-"+String(t.getMonth()+1).padStart(2,"0")+"-"+String(t.getDate()).padStart(2,"0"));
+  if(S.cols.usda!=null&&S.cols.minTemp!=null){const T=colLetter(S.cols.minTemp)+row;put("usda",`=IF(${T}="","",FLOOR((${T}*9/5+92)/10)+1)`)}
+  await S.sheets.updateValues({spreadsheetId:SHEET,range:`${TAB}!A${row}:${end}${row}`,values:[cells]},{interactive:true});
+  await loadOnce();return"r"+row;
+}
+function monthButtons(host,cur,set){host.replaceChildren();MON.forEach((m,i)=>host.appendChild(h("button",{class:"mbtn","aria-pressed":String(cur===i+1),title:MONTH[i],on:{click:()=>{set(i+1);render()}}},m)))}
+/* ---------- bloom wheel ---------- */
+function renderWheel(){
+  const svg=$("wheel");svg.replaceChildren();
+  const P=list().filter(p=>p.flowerStart!=null).sort((a,b)=>a.flowerStart-b.flowerStart||((a.flowerEnd-a.flowerStart+12)%12)-((b.flowerEnd-b.flowerStart+12)%12));
+  const cx=350,cy=350,r0=74,n=Math.max(P.length,1),rw=Math.min(5,(250-r0)/n),rMax=r0+n*rw;
+  const ang=m=>(m/12)*2*Math.PI-Math.PI/2,pt=(r,a)=>[cx+r*Math.cos(a),cy+r*Math.sin(a)];
+  function arc(r,s,e){const a1=ang(s-1);let sp=ang(e)-a1;if(sp<=0)sp+=2*Math.PI;if(sp>=2*Math.PI-1e-6)sp=2*Math.PI-1e-3;const [x1,y1]=pt(r,a1),[x2,y2]=pt(r,a1+sp);return`M${x1} ${y1}A${r} ${r} 0 ${sp>Math.PI?1:0} 1 ${x2} ${y2}`}
+  const sel=S.month;
+  const a1=ang(sel-1),a2=ang(sel),[sx1,sy1]=pt(rMax+46,a1),[sx2,sy2]=pt(rMax+46,a2);
+  el("path",{d:`M${cx} ${cy}L${sx1} ${sy1}A${rMax+46} ${rMax+46} 0 0 1 ${sx2} ${sy2}Z`,fill:"#FFFDF5","fill-opacity":.06},svg);
+  for(let m=0;m<12;m++){const [x1,y1]=pt(r0-8,ang(m)),[x2,y2]=pt(rMax+46,ang(m));el("line",{x1,y1,x2,y2,stroke:"var(--oak-line)","stroke-width":1},svg)}
+  const cnt=Array(12).fill(0);P.forEach(p=>{for(let m=1;m<=12;m++)if(inFlower(p,m))cnt[m-1]++});
+  const mx=Math.max(1,...cnt),b0=rMax+8;
+  cnt.forEach((c,m)=>{const hgt=3+(c/mx)*30,q1=ang(m)+.03,q2=ang(m+1)-.03;const [x1,y1]=pt(b0,q1),[x2,y2]=pt(b0+hgt,q1),[x3,y3]=pt(b0+hgt,q2),[x4,y4]=pt(b0,q2);
+    const low=c<=mx*.3;el("path",{d:`M${x1} ${y1}L${x2} ${y2}A${b0+hgt} ${b0+hgt} 0 0 1 ${x3} ${y3}L${x4} ${y4}A${b0} ${b0} 0 0 0 ${x1} ${y1}Z`,fill:low?"var(--ochre)":"var(--ochre-pale)","fill-opacity":low?1:.55},svg);
+    const [tx,ty]=pt(b0+hgt+12,ang(m+.5));el("text",{x:tx,y:ty,"text-anchor":"middle","dominant-baseline":"middle","font-size":12,"font-family":"Lato,sans-serif",fill:low?"var(--ochre-pale)":"var(--on-oak-muted)"},svg,c);
+    const [lx,ly]=pt(rMax+70,ang(m+.5));const t=el("text",{x:lx,y:ly,"text-anchor":"middle","dominant-baseline":"middle","font-size":14,"letter-spacing":"2","font-family":"Lora,serif",fill:m+1===sel?"var(--ochre)":"var(--on-oak)",style:"cursor:pointer"},svg,MON[m].toUpperCase());
+    t.addEventListener("click",()=>{S.month=m+1;render()})});
+  el("circle",{cx,cy,r:r0-12,fill:"var(--oak-2)"},svg);
+  const c1=el("text",{x:cx,y:cy-6,"text-anchor":"middle","font-family":"Lora,serif","font-size":26,fill:"var(--on-oak)"},svg,cnt[sel-1]);
+  el("text",{x:cx,y:cy+16,"text-anchor":"middle","font-family":"Lato,sans-serif","font-size":12,fill:"var(--on-oak-muted)"},svg,"in flower in "+MON[sel-1]);
+  P.forEach((p,i)=>{const r=r0+i*rw+rw/2,on=inFlower(p,sel);
+    const g=el("g",{style:"cursor:pointer",tabindex:0,role:"button","aria-label":p.name+", "+spanLabel(p.flowerStart,p.flowerEnd)},svg);
+    el("path",{d:arc(r,1,12)+" "+`M${pt(r,ang(0))[0]} ${pt(r,ang(0))[1]}`,stroke:"transparent","stroke-width":rw,fill:"none"},g);
+    const path=el("path",{d:arc(r,p.flowerStart,p.flowerEnd),stroke:p.flowerColour||"#ccc","stroke-width":Math.max(1.4,rw-1),fill:"none","stroke-opacity":on?1:.55,"stroke-linecap":"round"},g);
+    const show=()=>{path.setAttribute("stroke-width",rw+2.5);path.setAttribute("stroke-opacity",1);$("w-label").textContent=ZN[p.zone]||"";$("w-name").textContent=p.name;$("w-sub").textContent=spanLabel(p.flowerStart,p.flowerEnd)};
+    const hide=()=>{path.setAttribute("stroke-width",Math.max(1.4,rw-1));path.setAttribute("stroke-opacity",on?1:.55);wheelSide()};
+    g.addEventListener("mouseenter",show);g.addEventListener("mouseleave",hide);g.addEventListener("focus",show);g.addEventListener("blur",hide);
+    g.addEventListener("click",()=>openPlant(p.id));g.addEventListener("keydown",e=>{if(e.key==="Enter")openPlant(p.id)})});
+  monthButtons($("w-months"),S.month,v=>S.month=v);
+  wheelSide();
+}
+function wheelSide(){
+  const P=list().filter(p=>inFlower(p,S.month));
+  $("w-label").textContent="Hover a ring";$("w-name").textContent=MONTH[S.month-1];
+  $("w-sub").textContent=P.length?P.length+" plants in flower":"Nothing in flower this month";
+  $("w-now-label").textContent="Flowering in "+MONTH[S.month-1];
+  const host=$("w-now");host.replaceChildren();
+  P.forEach(p=>host.appendChild(h("button",{on:{click:()=>openPlant(p.id)}},h("span",{class:"dot",style:"background:"+p.flowerColour}),p.name)));
+}
+/* ---------- layer section ---------- */
+const SEC={L:24,px:40,x0:40,ground:430,top:40};
+function renderSection(){
+  const zs=$("sec-zone");zs.replaceChildren();ZONES.forEach(([k,l])=>zs.appendChild(h("option",{value:k},l)));zs.value=S.secZone;
+  zs.onchange=()=>{S.secZone=zs.value;render()};
+  monthButtons($("sec-months"),S.secMonth,v=>S.secMonth=v);
+  const svg=$("section");svg.replaceChildren();
+  const {L,px,x0,ground,top}=SEC,m=S.secMonth,maxH=(ground-top)/px;
+  const defs=el("defs",{},svg);
+  const pat=el("pattern",{id:"soil",width:8,height:8,patternUnits:"userSpaceOnUse"},defs);
+  el("rect",{width:8,height:8,fill:"#CDBB9A"},pat);el("circle",{cx:2,cy:3,r:.9,fill:"#8A6A4F"},pat);el("circle",{cx:6,cy:6,r:.7,fill:"#8A6A4F"},pat);
+  el("rect",{x:0,y:0,width:1000,height:ground,fill:"#FFFDF5"},svg);
+  for(let hm=0;hm<=maxH;hm+=1){const y=ground-hm*px;el("line",{x1:x0,y1:y,x2:x0+L*px,y2:y,stroke:"#EDE7D4","stroke-width":1},svg);if(hm%2===0)el("text",{x:x0-8,y:y+4,"text-anchor":"end","font-size":11,"font-family":"Lato,sans-serif",fill:"var(--muted)"},svg,hm+" m")}
+  for(let xm=0;xm<=L;xm+=1)el("line",{x1:x0+xm*px,y1:top,x2:x0+xm*px,y2:ground,stroke:"#F2ECDB","stroke-width":1},svg);
+  el("rect",{x:x0,y:ground,width:L*px,height:34,fill:"url(#soil)"},svg);
+  el("line",{x1:x0,y1:ground,x2:x0+L*px,y2:ground,stroke:"var(--soil)","stroke-width":2},svg);
+  for(let i=0;i<5;i++)el("rect",{x:x0+L*px-2,y:ground+i*7,width:20,height:6,rx:2,fill:"var(--stone)",stroke:"#9C927A","stroke-width":.6},svg);
+  for(let xm=0;xm<=L;xm+=4)el("text",{x:x0+xm*px,y:ground+50,"text-anchor":"middle","font-size":11,"font-family":"Lato,sans-serif",fill:"var(--muted)"},svg,xm+" m");
+  el("text",{x:x0+L*px+10,y:ground-6,"font-size":11,"font-family":"Lato,sans-serif",fill:"var(--muted)"},svg,"terrace edge");
+  const P=Object.values(S.plants).map(p=>({...p})).filter(p=>p.zone===S.secZone&&p.height!=null).sort((a,b)=>(LAYER_RANK[a.layer]??9)-(LAYER_RANK[b.layer]??9)||(a.order??0)-(b.order??0));
+  if(!P.length){el("text",{x:500,y:220,"text-anchor":"middle","font-family":"Lora,serif","font-size":18,fill:"var(--muted)"},svg,"No plants in this zone yet. Set a plant’s Zone to place it here.");return}
+  const unplaced=P.filter(p=>typeof p.x!=="number");
+  unplaced.forEach((p,i)=>{p._x=1+(i+.5)*(L-2)/unplaced.length});
+  P.forEach(p=>{if(typeof p.x==="number")p._x=p.x});
+  const layerG=el("g",{},svg),labelG=el("g",{},svg);
+  P.forEach((p,i)=>drawPlant(p,i,layerG,labelG,m));
+}
+/* ---------- habit drawings: pen line and wash, one routine per growth form ---------- */
+const INK="#2C2626",BARK="#8A6A4F";
+const FORMS=[["round-tree","Rounded tree"],["cone-tree","Conical tree"],["weeping-tree","Weeping tree"],["open-tree","Open tree"],["multistem","Multi-stemmed"],["tree-fern","Tree fern"],["round-shrub","Rounded shrub"],["upright-shrub","Upright shrub"],["rosette","Rosette"],["spike-clump","Clump with spikes"],["mound","Low mound"],["strap-clump","Strap leaves"],["bold-leaf","Bold leaves"],["mat","Mat"],["fern-tuft","Fern tuft"],["climber","Climber"],["annual","Upright annual"]];
+const FORM={"white-lupin":"annual","subterranean-clover":"mat","fava-bean":"annual","hydrangea":"round-shrub","strawberry":"mat","early-dog-violet":"mat","long-stringy-groundcover":"mat","garden-weigela":"round-shrub","pineapple-sage":"spike-clump","passion-fruit":"climber","red-currant":"round-shrub","purple-swedish-ivy":"mat","bay-laurel":"round-tree","fig-big-purple":"round-tree","fig-sadam":"round-tree","trailing-stonecrop":"mat","dock":"spike-clump","yucca":"rosette","tamarillo":"upright-shrub","red-oak":"round-tree","ginkgo":"open-tree","castor-oil-plant":"upright-shrub","african-bush-daisy":"mound","sweet-woodruff":"mat","jasmine":"climber","cape-gooseberry":"round-shrub","kangaroo-apple":"upright-shrub","lions-ear":"spike-clump","marjoram":"mound","weeping-willow":"weeping-tree","willowherb":"spike-clump","mahonia":"upright-shrub","garlic-chives":"strap-clump","mexican-marigold":"round-shrub","ajwain":"mound","maidenhair-spleenwort":"fern-tuft","sage":"mound","cosmic-lobster":"mound","myrtle":"round-shrub","pink-wood-sorrel":"mat","australian-tree-fern":"tree-fern","bears-breech":"bold-leaf","japanese-camellia":"round-shrub","strawberry-guava":"round-shrub","glossy-privet":"round-tree","midland-hawthorn":"round-tree","little-spooky":"round-shrub","blue-anise-sage":"spike-clump","scarlet-sage":"spike-clump","peace-lily":"bold-leaf","elephant-ear":"bold-leaf","tamarack":"cone-tree","herb-of-gilead":"spike-clump","australian-finger-lime":"round-shrub","japanese-barberry":"round-shrub","red-vein-abutilon":"upright-shrub","hazel":"multistem","naked-ladies":"strap-clump","aloe":"rosette","ivy":"climber","strawberry-guava-seedlings":"round-shrub","feijoa":"round-shrub","geranium":"mound","dischidia":"climber","swedish-ivy-cuttings":"mat","painted-nettle":"mound","local-shade-groundcovers":"mat"};
+function formOf(p){return p.form||FORM[p.slug]||({canopy:"round-tree","sub-canopy":"round-tree",shrub:"round-shrub",herbaceous:"spike-clump",groundcover:"mat",climber:"climber",bulb:"strap-clump","green manure":"annual"})[p.layer]||"round-shrub"}
+const f1=v=>v.toFixed(1);
+function scallop(cx,cy,rx,ry,n,amp,r){const A=[];for(let i=0;i<n;i++)A.push(i/n*2*Math.PI+(r()-.5)*.2);let d="";
+  for(let i=0;i<n;i++){const a=A[i],b=i===n-1?A[0]+2*Math.PI:A[i+1],m=(a+b)/2,k=1+amp*(.6+r()*.8);
+    const x1=cx+Math.cos(a)*rx,y1=cy+Math.sin(a)*ry,x2=cx+Math.cos(b)*rx,y2=cy+Math.sin(b)*ry;
+    d+=(i?"":`M${f1(x1)} ${f1(y1)}`)+`Q${f1(cx+Math.cos(m)*rx*k)} ${f1(cy+Math.sin(m)*ry*k)} ${f1(x2)} ${f1(y2)}`}return d+"Z"}
+function leafD(x,y,len,wid,ang){const a=ang*Math.PI/180,tx=x+Math.cos(a)*len,ty=y+Math.sin(a)*len,nx=-Math.sin(a)*wid,ny=Math.cos(a)*wid,mx=(x+tx)/2,my=(y+ty)/2;
+  return `M${f1(x)} ${f1(y)}Q${f1(mx+nx)} ${f1(my+ny)} ${f1(tx)} ${f1(ty)}Q${f1(mx-nx)} ${f1(my-ny)} ${f1(x)} ${f1(y)}Z`}
+function drawHabit(g,p,o){
+  const {H,W,ground:G,leaf,flower}=o,r=rnd(hash(p.id)+7),form=formOf(p),hw=W/2;
+  const wash=(c,op=.5)=>({fill:c||"none","fill-opacity":c?op:0,stroke:INK,"stroke-width":.9,"stroke-linejoin":"round"});
+  const line=(d,w=1,c=INK,op=1)=>el("path",{d,fill:"none",stroke:c,"stroke-width":w,"stroke-opacity":op,"stroke-linecap":"round"},g);
+  const leafy=(x,y,len,wid,ang,c=leaf)=>el("path",{d:leafD(x,y,len,wid,ang),...wash(c,.55)},g);
+  const blob=(cx,cy,rx,ry,c=leaf,op=.5,ink=true)=>el("path",{d:scallop(cx,cy,rx,ry,Math.max(7,Math.round((rx+ry)/7)),.2,r),...wash(c,op),...(ink?{}:{stroke:"none"})},g);
+  const pinna=(x,y,len,wid,ang,c=leaf||"#9DA88A")=>el("path",{d:leafD(x,y,len,wid,ang),fill:c,"fill-opacity":.85,stroke:"none"},g);
+  const hatch=(cx,cy,rx,ry,n)=>{for(let k=0;k<n;k++){const a=r()*2*Math.PI,d=Math.sqrt(r())*.8,x=cx+Math.cos(a)*rx*d,y=cy+Math.sin(a)*ry*d;line(`M${f1(x-3)} ${f1(y)}q3 -3 6 0`,.6,INK,.45)}};
+  const dots=(cx,cy,rx,ry,n,sz=2.6)=>{if(!flower)return;for(let k=0;k<n;k++){const a=r()*2*Math.PI,d=Math.sqrt(r())*.85;el("circle",{cx:f1(cx+Math.cos(a)*rx*d),cy:f1(cy+Math.sin(a)*ry*d),r:sz,fill:flower,stroke:INK,"stroke-width":.5,"stroke-opacity":.6},g)}};
+  const branch=(x,y,len,ang,depth)=>{const x2=x+Math.cos(ang)*len,y2=y+Math.sin(ang)*len;line(`M${f1(x)} ${f1(y)}L${f1(x2)} ${f1(y2)}`,Math.max(.5,depth*.7),INK,.8);
+    if(depth>0){branch(x2,y2,len*.72,ang-.35-r()*.3,depth-1);branch(x2,y2,len*.72,ang+.35+r()*.3,depth-1);if(r()>.6)branch(x2,y2,len*.6,ang+(r()-.5)*.3,depth-1)}};
+  const trunk=(h,w)=>el("path",{d:`M${f1(-w)} ${G}L${f1(-w*.45)} ${f1(G-h)}L${f1(w*.45)} ${f1(G-h)}L${f1(w)} ${G}Z`,fill:BARK,"fill-opacity":.45,stroke:INK,"stroke-width":.9},g);
+  const bare=!leaf;
+  switch(form){
+  case "round-tree":case "open-tree":case "multistem":{
+    const th=H*(form==="multistem"?.15:.42),tw=Math.max(3,W*.035);
+    if(form==="multistem"){for(let k=0;k<6;k++){const x=(k-2.5)*tw*.8,top=G-H*(.55+r()*.2);line(`M${f1(x)} ${G}Q${f1(x*1.4)} ${f1((G+top)/2)} ${f1(x*3)} ${f1(top)}`,1.6,INK,.85)}}
+    else trunk(th,tw);
+    if(bare||form==="open-tree"){const n=form==="open-tree"?4:3;for(let k=0;k<n;k++)branch(0,G-th,H*(form==="open-tree"?.2:.16),-Math.PI/2+(k-(n-1)/2)*.45,form==="open-tree"?3:4)}
+    if(!bare){if(form==="open-tree"){for(let k=0;k<9;k++){const x=(r()-.5)*W*.8,y=G-H*(.5+r()*.45);blob(x,y,W*.09,H*.06)}}
+      else{const cy=G-H*(form==="multistem"?.55:.68),ry=H*(form==="multistem"?.42:.32);blob(0,cy,hw,ry);
+        for(let k=0;k<4;k++)blob((r()-.5)*hw,cy+(r()-.5)*ry*.8,hw*.45,ry*.4,leaf,.3,false);hatch(0,cy,hw,ry,Math.round(W/9));dots(0,cy,hw,ry,Math.round(W/8),3)}}
+    else if(flower){for(let k=0;k<Math.round(W/6);k++){const x=(r()-.5)*W*.8,y=G-H*(.45+r()*.45);line(`M${f1(x)} ${f1(y)}l0 6`,2,flower)}}
+    break}
+  case "cone-tree":{line(`M0 ${G}L0 ${f1(G-H)}`,2.2,INK);
+    const tiers=Math.max(5,Math.round(H/22));for(let k=0;k<tiers;k++){const t=k/tiers,y=G-H*(.12+t*.86),w=hw*(1-t)*.95+4;
+      if(bare){line(`M0 ${f1(y)}Q${f1(-w*.5)} ${f1(y-4)} ${f1(-w)} ${f1(y+6)}M0 ${f1(y)}Q${f1(w*.5)} ${f1(y-4)} ${f1(w)} ${f1(y+6)}`,.8,INK,.7)}
+      else blob(0,y,w,H/tiers*.55,leaf,.55)}
+    break}
+  case "weeping-tree":{trunk(H*.5,Math.max(3,W*.03));const cy=G-H*.62,rx=hw*.8,ry=H*.3;
+    if(!bare)blob(0,cy,rx,ry,leaf,.3);
+    for(let k=0;k<Math.round(W/5);k++){const x=(r()-.5)*W*.9,y0=cy-ry*(.3+r()*.6)*(1-Math.abs(x)/hw*.6),y1=G-H*(.04+r()*.18);
+      line(`M${f1(x*.6)} ${f1(y0)}Q${f1(x)} ${f1(y0-6)} ${f1(x*1.05)} ${f1(y1)}`,bare?.6:1.2,bare?INK:leaf,bare?.6:.85)}
+    break}
+  case "tree-fern":{const th=H*.62,tw=Math.max(4,W*.05);el("rect",{x:f1(-tw),y:f1(G-th),width:f1(tw*2),height:f1(th),fill:BARK,"fill-opacity":.45,stroke:INK,"stroke-width":.9},g);
+    for(let y=G-th+6;y<G;y+=7)line(`M${f1(-tw)} ${f1(y)}q${f1(tw)} 4 ${f1(tw*2)} 0`,.5,INK,.6);
+    for(let k=0;k<9;k++){const a=-Math.PI+(k+.5)*Math.PI/9,L=hw*(.75+r()*.25),ex=Math.cos(a)*L,ey=G-th+Math.abs(Math.sin(a))*-H*.25+H*.12;
+      const cx=Math.cos(a)*L*.5,cy=G-th-H*.3;line(`M0 ${f1(G-th)}Q${f1(cx)} ${f1(cy)} ${f1(ex)} ${f1(ey)}`,1,INK);
+      for(let t=.15;t<.95;t+=.08){const q=1-t,x=2*q*t*cx+t*t*ex,y=q*q*(G-th)+2*q*t*cy+t*t*ey,ln=10*(1-Math.abs(t-.45));pinna(x,y,ln,2,(a*180/Math.PI)-70);pinna(x,y,ln,2,(a*180/Math.PI)+70)}}
+    break}
+  case "round-shrub":{
+    for(let k=0;k<3;k++)line(`M${f1((k-1)*3)} ${G}L${f1((k-1)*hw*.35)} ${f1(G-H*.35)}`,1.1,INK,.8);
+    if(bare){for(let k=0;k<5;k++)branch((k-2)*2,G,H*.25,-Math.PI/2+(k-2)*.3,3)}
+    else{const cy=G-H*.52,ry=H*.48;blob(0,cy,hw,ry);for(let k=0;k<3;k++)blob((r()-.5)*hw,cy+(r()-.3)*ry*.6,hw*.4,ry*.35,leaf,.28,false);hatch(0,cy,hw,ry,Math.round(W/8));
+      const big=/hydrangea|spooky/.test(p.id);dots(0,cy-ry*.1,hw*.9,ry*.85,big?Math.round(W/14)+3:Math.round(W/6)+4,big?6:2.6)}
+    break}
+  case "upright-shrub":{const n=p.id==="mahonia"?4:2;
+    for(let k=0;k<n;k++){const x=(k-(n-1)/2)*hw*.3;line(`M${f1(x*.3)} ${G}Q${f1(x)} ${f1(G-H*.4)} ${f1(x*1.2)} ${f1(G-H*.78)}`,1.4,INK,.9)}
+    if(!bare){const big=p.id==="castor-oil-plant"?1.5:1;for(let k=0;k<11;k++){const a=-160+k*14+(r()-.5)*10,x=(r()-.5)*hw*.6,y=G-H*(.7+r()*.15);leafy(x,y,H*.22*big,H*.07*big,a)}}
+    if(flower){for(let k=0;k<7;k++){const x=(r()-.5)*hw*1.1,y=G-H*(.6+r()*.32);el("path",{d:`M${f1(x)} ${f1(y)}l-3 7l6 0z`,fill:flower,stroke:INK,"stroke-width":.5},g)}}
+    break}
+  case "rosette":{const yucca=p.id==="yucca",th=yucca?H*.28:0;if(th)trunk(th,Math.max(3,W*.06));
+    const L=yucca?H*.42:H*.62;for(let k=0;k<15;k++){const a=-170+k*(160/14);leafy(0,G-th,L*(.75+r()*.3),yucca?2.2:4.5,a,leaf||"#9DA88A")}
+    if(flower){const top=G-H,base=G-th-L*.3;line(`M0 ${f1(base)}L0 ${f1(top)}`,1.2,INK);
+      for(let y=top;y<top+(base-top)*.4;y+=5){el("ellipse",{cx:f1(yucca?((y/5)%2?5:-5):0),cy:f1(y),rx:yucca?3.5:2.2,ry:yucca?3:4,fill:flower,stroke:INK,"stroke-width":.5},g)}}
+    break}
+  case "spike-clump":{const n=Math.max(3,Math.min(9,Math.round(W/9)));
+    if(bare){for(let k=0;k<n;k++){const x=(k-(n-1)/2)*4;line(`M${f1(x)} ${G}l${f1(x*.3)} -${f1(Math.min(12,H*.15))}`,.8,INK,.4)}break}
+    for(let k=0;k<n;k++){const bx=(k-(n-1)/2)*2.5,tx=(k-(n-1)/2)/(n-1||1)*W*.9,ty=G-H*(.75+r()*.25);
+      line(`M${f1(bx)} ${G}Q${f1(tx*.3)} ${f1((G+ty)/2)} ${f1(tx)} ${f1(ty)}`,1,INK,.9);
+      const sp=flower?.35:0;for(let t=.12;t<1-sp;t+=.16){const x=bx+(tx-bx)*t*t,y=G+(ty-G)*t;leafy(x,y,Math.min(14,W*.25),3.5,-25,leaf);leafy(x,y,Math.min(14,W*.25),3.5,-155,leaf)}
+      if(flower){for(let t=1-sp;t<=1.001;t+=.05){const x=bx+(tx-bx)*t*t,y=G+(ty-G)*t,s=(Math.round(t*100)%2?1:-1);el("ellipse",{cx:f1(x+s*2.5),cy:f1(y),rx:2.6,ry:1.8,fill:flower,stroke:INK,"stroke-width":.45},g)}}}
+    break}
+  case "mound":{if(bare)break;const cy=G-H*.45,ry=H*.48;blob(0,cy,hw,ry);hatch(0,cy,hw,ry,Math.round(W/7));
+    if(/painted-nettle|cosmic|ajwain/.test(p.id)){for(let k=0;k<Math.round(W/6);k++){const a=r()*Math.PI,x=Math.cos(a)*hw*.7*Math.sqrt(r()),y=cy-Math.sin(a)*ry*.6;leafy(x,y,9,4,-90+(r()-.5)*120,p.id==="painted-nettle"?"#B83E5E":leaf)}}
+    dots(0,cy-ry*.3,hw*.85,ry*.6,Math.round(W/5)+3,2.4);break}
+  case "strap-clump":{const dormant=bare||(p.leaves==="summer-dormant"&&flower);
+    if(!dormant)for(let k=0;k<11;k++){const a=-160+k*14;leafy(0,G,H*(.45+r()*.25),2,a,leaf)}
+    if(flower){for(let k=0;k<3;k++){const x=(k-1)*hw*.35,top=G-H*(.85+r()*.15);line(`M${f1(x*.3)} ${G}L${f1(x)} ${f1(top)}`,1,INK,.8);
+      for(let j=0;j<6;j++){const a=-Math.PI*(j/5),cx=x+Math.cos(a)*6,cy=top+Math.sin(a)*5;el("path",{d:`M${f1(x)} ${f1(top)}L${f1(cx)} ${f1(cy)}`,stroke:INK,"stroke-width":.5},g);el("circle",{cx:f1(cx),cy:f1(cy),r:2.6,fill:flower,stroke:INK,"stroke-width":.5},g)}}}
+    break}
+  case "bold-leaf":{if(bare)break;const n=p.id==="elephant-ear"?4:6,heart=p.id==="elephant-ear";
+    for(let k=0;k<n;k++){const a=-150+k*(120/(n-1)),rad=a*Math.PI/180,L=H*(.4+r()*.25),x=Math.cos(rad)*L*.55,y=G+Math.sin(rad)*L;
+      line(`M0 ${G}Q${f1(x*.3)} ${f1(y+L*.2)} ${f1(x)} ${f1(y)}`,1,INK,.85);
+      leafy(x,y,H*(heart?.32:.36),H*(heart?.16:.08),a+(heart?60:15))}
+    if(flower){const top=G-H;line(`M0 ${G}L0 ${f1(top)}`,1.2,INK);
+      if(p.id==="peace-lily")el("path",{d:leafD(0,top+14,18,6,-90),fill:flower,stroke:INK,"stroke-width":.6},g);
+      else for(let y=top;y<top+H*.35;y+=5)el("ellipse",{cx:f1((y/5)%2?3:-3),cy:f1(y),rx:3,ry:2.2,fill:flower,stroke:INK,"stroke-width":.45},g)}
+    break}
+  case "mat":{if(bare)break;const n=Math.max(5,Math.round(W/6));
+    for(let k=0;k<n;k++){const x=-hw+(k+.5)*W/n+(r()-.5)*3,y=G-Math.max(4,H*(.3+r()*.4));el("ellipse",{cx:f1(x),cy:f1(y),rx:f1(Math.max(3.5,W/n*.7)),ry:f1(Math.max(3,H*.35)),...wash(leaf,.5)},g)}
+    dots(0,G-H*.75,hw*.9,Math.max(3,H*.3),Math.round(n*.7),2.2);break}
+  case "fern-tuft":{for(let k=0;k<7;k++){const a=-160+k*23,rad=a*Math.PI/180,L=Math.max(H,10)*1.1,ex=Math.cos(rad)*L,ey=G+Math.sin(rad)*L*.85;
+      line(`M0 ${G}Q${f1(ex*.3)} ${f1(G-L)} ${f1(ex)} ${f1(ey)}`,.8,INK);for(let t=.2;t<1;t+=.15){const q=1-t,x=2*q*t*ex*.3+t*t*ex,y=q*q*G+2*q*t*(G-L)+t*t*ey;pinna(x,y,3.5,1.6,a-80);pinna(x,y,3.5,1.6,a+80)}}break}
+  case "climber":{const top=G-Math.min(H,(G-SEC.top)*.85);el("rect",{x:-1.5,y:f1(top),width:3,height:f1(G-top),fill:BARK,"fill-opacity":.35,stroke:INK,"stroke-width":.6},g);
+    let d=`M0 ${G}`;const n=12;for(let k=1;k<=n;k++)d+=`Q${k%2?9:-9} ${f1(G-(k-.5)*(G-top)/n)} 0 ${f1(G-k*(G-top)/n)}`;line(d,1,INK,.85);
+    if(!bare)for(let k=1;k<n*2;k++){const y=G-k*(G-top)/(n*2),s=k%2?1:-1;leafy(s*6,y,p.id==="passion-fruit"?12:8,p.id==="passion-fruit"?6:3.5,s>0?-20:-160)}
+    if(flower)for(let k=0;k<8;k++){const y=top+(G-top)*r()*.8,x=(r()>.5?1:-1)*(8+r()*6);el("circle",{cx:f1(x),cy:f1(y),r:p.id==="passion-fruit"?4.5:2.6,fill:flower,stroke:INK,"stroke-width":.5},g)}
+    break}
+  case "annual":{if(bare)break;const n=4,lupin=p.id==="white-lupin";
+    for(let k=0;k<n;k++){const x=(k-(n-1)/2)*hw*.45,top=G-H*(.75+r()*.25);line(`M${f1(x*.3)} ${G}L${f1(x)} ${f1(top)}`,1,INK,.85);
+      for(let t=.15;t<(flower&&lupin?.65:.95);t+=.2){const y=G+(top-G)*t,xx=x*.3+(x-x*.3)*t;
+        if(lupin){for(let j=0;j<6;j++)leafy(xx,y,7,2,-170+j*32)}else{leafy(xx,y,9,4,-30);leafy(xx,y,9,4,-150)}}
+      if(flower){if(lupin)for(let y=top;y<top+H*.3;y+=4)el("ellipse",{cx:f1(x+((y/4)%2?2.5:-2.5)),cy:f1(y),rx:2.4,ry:1.8,fill:flower,stroke:INK,"stroke-width":.45},g);
+        else for(let j=0;j<3;j++)el("circle",{cx:f1(x+(j-1)*4),cy:f1(top+H*(.2+j*.12)),r:2.4,fill:flower,stroke:INK,"stroke-width":.5},g)}}
+    break}
+  }
+}
+function drawPlant(p,i,host,labels,m){
+  const {px,x0,ground,top}=SEC,X=x=>x0+x*px,Y=hm=>ground-hm*px;
+  const g=el("g",{class:"plant-g",transform:`translate(${X(p._x)},0)`,tabindex:0,role:"button","aria-label":p.name},host);
+  const hgt=Math.min(p.height||.3,(ground-top)/px+.6),spr=Math.max(.3,p.spread||.4),leaf=leafColour(p,m),flower=inFlower(p,m)?p.flowerColour:null;
+  const H=Math.max(14,Math.min(ground-top+10,hgt*px)),W=Math.max(16,Math.min(22*px,spr*px));
+  if(p.habit&&p.habit.url){
+    const winter=!leaf&&p.habit.bare,src=winter?p.habit.bare:p.habit.url;
+    const wp=H*(winter?p.habit.bw:p.habit.w||700)/(winter?p.habit.bh:p.habit.h||900),look=!leaf&&!winter?"grayscale(1) opacity(.45)":"none";
+    el("image",{href:src,x:-wp/2,y:ground-H,width:wp,height:H,preserveAspectRatio:"xMidYMax meet",class:"ink",style:"filter:"+look},g);
+    if(flower)el("circle",{cx:wp/2-6,cy:ground-H+6,r:5,fill:flower,stroke:INK,"stroke-width":.5},g);
+  }else drawHabit(g,p,{H,W,ground,leaf,flower});
+  el("rect",{x:-W/2,y:ground-H,width:W,height:H,fill:"transparent"},g);
+  if((p.height||0)>(ground-top)/px)el("text",{x:0,y:top-6,"text-anchor":"middle","font-size":11,"font-family":"Lato,sans-serif",fill:"var(--muted)"},g,"↑ "+p.height+" m");
+  const row=i%3,ly=ground+66+row*16;
+  const lg=el("g",{transform:`translate(${X(p._x)},0)`},labels);
+  el("line",{x1:0,y1:ground+36,x2:0,y2:ly-10,stroke:"#D3CAAC","stroke-width":1},lg);
+  el("text",{x:0,y:ly,"text-anchor":"middle","font-size":11.5,"font-family":"Lato,sans-serif",fill:"var(--text)"},lg,p.name);
+  // interaction
+  g.addEventListener("keydown",e=>{if(e.key==="Enter")openPlant(p.id)});
+  let start=null,moved=false;
+  g.addEventListener("pointerdown",e=>{start={x:e.clientX,px0:p._x};moved=false;g.setPointerCapture(e.pointerId)});
+  g.addEventListener("pointermove",e=>{if(!start)return;const svg=$("section"),k=1000/svg.getBoundingClientRect().width;const dx=(e.clientX-start.x)*k/SEC.px;if(Math.abs(dx)>.05)moved=true;
+    p._x=Math.max(0,Math.min(SEC.L,start.px0+dx));g.setAttribute("transform",`translate(${X(p._x)},0)`);lg.setAttribute("transform",`translate(${X(p._x)},0)`);g.classList.add("drag")});
+  g.addEventListener("pointerup",()=>{g.classList.remove("drag");const was=start;start=null;if(!was)return;
+    if(moved)saveX(p,Math.round(p._x*10)/10);else openPlant(p.id)});
+}
+/* ---------- calendar ---------- */
+function renderCalendar(){
+  monthButtons($("cal-months"),S.calMonth,v=>S.calMonth=v);
+  const m=S.calMonth,P=list();
+  const groups=[["In flower",P.filter(p=>inFlower(p,m)),p=>p.flowerColour],["To harvest",P.filter(p=>inHarvest(p,m)),()=>"var(--ochre)"],["To propagate",P.filter(p=>inProp(p,m)),()=>"var(--leaf-ever)"]];
+  const sum=$("cal-summary");sum.replaceChildren();
+  groups.forEach(([t,arr,col])=>{const ul=h("ul");arr.forEach(p=>ul.appendChild(h("li",{},h("button",{on:{click:()=>openPlant(p.id)}},h("span",{class:"dot",style:"background:"+col(p)}),p.name))));
+    sum.appendChild(h("div",{class:"plate"},h("h3",{},t,h("span",{},arr.length+" in "+MONTH[m-1])),arr.length?ul:h("p",{style:"margin:10px 0 0;color:var(--muted);font-size:13px"},"Nothing this month.")))});
+  const tb=$("cal-grid");tb.replaceChildren();
+  const head=h("tr",{},h("th",{class:"nm"},"Plant"));MON.forEach((mm,i)=>head.appendChild(h("th",{class:i+1===m?"now":""},mm)));tb.appendChild(h("thead",{},head));
+  const body=h("tbody");
+  [...P].sort((a,b)=>(LAYER_RANK[a.layer]??9)-(LAYER_RANK[b.layer]??9)||a.name.localeCompare(b.name)).forEach(p=>{
+    const tr=h("tr",{},h("td",{class:"nm"},h("button",{on:{click:()=>openPlant(p.id)}},p.name)));
+    for(let k=1;k<=12;k++){const cell=h("div",{class:"cell"});
+      if(S.tracks.flower)cell.appendChild(h("div",{class:"track",style:"background:"+(inFlower(p,k)?(p.flowerColour||"#ccc"):"transparent")+(inFlower(p,k)&&isLight(p.flowerColour)?";box-shadow:inset 0 0 0 1px #C9BFA0":"")}));
+      if(S.tracks.harvest)cell.appendChild(h("div",{class:"track",style:"background:"+(inHarvest(p,k)?"var(--ochre)":"transparent")}));
+      if(S.tracks.prop)cell.appendChild(h("div",{class:"track",style:"background:"+(inProp(p,k)?"var(--leaf-ever)":"transparent")}));
+      tr.appendChild(h("td",{class:k===m?"now":""},cell))}
+    body.appendChild(tr)});
+  tb.appendChild(body);
+}
+/* ---------- chrome ---------- */
+const VIEWS=["cards","nursery","land","learn","wheel","layers","calendar"];
+/* collections: which Status values belong to each view, in display order */
+const COLL={nursery:{title:"Nursery",blurb:"Everything in pots, trays and seed packets, waiting to go out.",groups:["Potted","Sown","Seed","To propagate"]},
+  land:{title:"On the land",blurb:"What is in the ground: planted by us, growing wild, or waiting to be checked.",groups:["Planted","Wild","To check"]}};
+const secOf=v=>COLL[v]?"cards":v;
+function buildChrome(){
+  const zs=$("zone");fillSelect(zs,[["all","All zones"],...ZONES],S.zone);
+  {const ls=$("f-loc"),tops=[...new Set(Object.values(S.plants).map(p=>locTop(p.raw.where)).filter(Boolean))].sort((a,b)=>a==="Nursery"?-1:b==="Nursery"?1:a.localeCompare(b));fillSelect(ls,[["all","Everywhere"],...tops],S.loc);ls.parentElement.hidden=S.view==="layers"}
+  const cards=secOf(S.view)==="cards";$("search").hidden=!cards;$("f-status-wrap").hidden=S.view!=="cards";$("f-role-wrap").hidden=!(cards||S.view==="learn");$("count").hidden=!cards;zs.parentElement.hidden=S.view==="layers";
+  document.querySelector(".filters").hidden=!S.loaded;
+  document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected",String(t.dataset.v===S.view)));
+  ["cards","learn","wheel","layers","calendar"].forEach(v=>$("v-"+v).hidden=v!==secOf(S.view)||!S.loaded);
+}
+function distinct(key,base){const s=new Set(base||[]);Object.values(S.plants).forEach(p=>{const v=String(p.raw[key]||"").trim();if(v)s.add(v)});return[...s]}
+function fillSelect(sel,opts,value,blank){sel.replaceChildren();if(blank!=null)sel.appendChild(h("option",{value:""},blank));opts.forEach(o=>{const[v,l]=Array.isArray(o)?o:[o,o];sel.appendChild(h("option",{value:v},l))});
+  if(value&&![...sel.options].some(o=>o.value===value))sel.appendChild(h("option",{value},value));sel.value=value||""}
+
+/* ---------- card wall ---------- */
+function picture(p,size){
+  if(p.plate&&p.plate.url)return h("img",{src:p.plate.url,alt:"",class:"ink",loading:"lazy"});
+  const svg=el("svg",{viewBox:"-70 0 140 170","aria-hidden":"true"}),g=el("g",{},svg);
+  const tall=["canopy","sub-canopy"].includes(p.layer),low=["groundcover","green manure"].includes(p.layer);
+  try{drawHabit(g,p,{H:tall?140:low?46:100,W:tall?110:low?120:96,ground:160,leaf:leafColour(p,6)||"var(--leaf-soft)",flower:p.flowerColour||null})}catch(e){}
+  el("line",{x1:-62,y1:160,x2:62,y2:160,stroke:"#D3CAAC","stroke-width":1},svg);
+  return svg;
+}
+function card(p,showStatus){return h("button",{class:"card","aria-label":p.name,on:{click:()=>openPlant(p.id)}},
+    h("span",{class:"pic"},picture(p),roleMarks(p)),
+    h("span",{class:"cap"},h("span",{class:"nm"},p.name),h("span",{class:"sci"},p.sci||"Not identified yet"),
+      h("span",{class:"meta"},p.flowerColour?h("span",{class:"dot",style:"background:"+p.flowerColour}):null,showStatus&&p.status?h("span",{class:"pill"},p.status):null,p.qty!=null?h("span",{},p.qty+(p.unit&&p.unit!=="plants"?" "+p.unit:(p.qty===1?" plant":" plants"))):null)))}
+function renderCards(){
+  fillRoles();
+  const st=$("f-status"),cur=S.status;fillSelect(st,[["all","Any status"],...distinct("status")],cur);if(st.value!==cur){S.status="all";st.value="all"}
+  const q=S.search.trim().toLowerCase();
+  const C=COLL[S.view],inColl=p=>!C||C.groups.some(g=>g.toLowerCase()===p.status.toLowerCase());
+  const P=list().filter(p=>inColl(p)&&inRole(p)&&(C||S.status==="all"||p.status===S.status)&&(!q||p.name.toLowerCase().includes(q)||p.sci.toLowerCase().includes(q)||String(p.raw.family||"").toLowerCase().includes(q)));
+  const plantsIn=A=>A.reduce((n,p)=>n+(p.qty!=null&&(!p.unit||p.unit==="plants")?p.qty:0),0);
+  const sumLine=A=>{const n=plantsIn(A);return A.length+(A.length===1?" kind":" kinds")+(n?" · "+n+(n===1?" plant":" plants"):"")};
+  $("count").textContent=sumLine(P);
+  const intro=$("intro");intro.hidden=!C;intro.replaceChildren();
+  const host=$("cards");host.replaceChildren();
+  const grid=A=>{const g=h("div",{class:"cards"});A.forEach(p=>g.appendChild(card(p,!C)));return g};
+  if(!P.length){host.appendChild(h("p",{class:"empty"},"Nothing matches. Clear the search or a filter."))}
+  else if(!C)host.appendChild(grid(P));
+  else{
+    const by=g=>P.filter(p=>p.status.toLowerCase()===g.toLowerCase());
+    intro.appendChild(h("div",{},h("h2",{},C.title),h("p",{},C.blurb)));
+    const stats=h("div",{class:"stages"});
+    C.groups.forEach(g=>{const A=by(g);if(!A.length)return;const n=plantsIn(A);
+      stats.appendChild(h("a",{class:"stage",href:"#g-"+slug(g),on:{click:e=>{e.preventDefault();const t=document.getElementById("g-"+slug(g));if(t)t.scrollIntoView({behavior:"smooth",block:"start"})}}},h("span",{class:"sg"},g),h("b",{},String(A.length)),h("span",{},A.length===1?"kind":"kinds"),n?h("span",{class:"sp"},n+" plants"):null))});
+    intro.appendChild(stats);
+    C.groups.forEach(g=>{const A=by(g);if(!A.length)return;
+      host.appendChild(h("section",{class:"grp",id:"g-"+slug(g)},h("div",{class:"grp-h"},h("h3",{},g),h("span",{class:"label"},sumLine(A))),grid(A)))});
+  }
+  $("add-box").hidden=!(CAN_EDIT&&S.sheets);
+  fillSelect($("ap-status"),distinct("status",["Potted","Planted","Seed","Sown","To propagate","Wild","To check","To find"]),S.view==="land"?"Planted":S.view==="nursery"?"Potted":($("ap-status").value||"Potted"));
+  fillSelect($("ap-layer"),distinct("layer",LAYERS),$("ap-layer").value||"shrub");
+  fillSelect($("ap-zone"),ZONES.map(z=>z[1]),$("ap-zone").value||"Nursery");
+}
+$("add-plant").addEventListener("submit",async e=>{e.preventDefault();const err=$("ap-err");err.textContent="";
+  const name=$("ap-name").value.trim();if(!name){err.textContent="Give the plant a name.";return}
+  const btn=e.target.querySelector("button");btn.disabled=true;err.textContent="Adding to the Sheet…";
+  try{const id=await addPlant({name,sci:$("ap-sci").value.trim(),status:$("ap-status").value,qty:$("ap-qty").value,unit:"plants",kind:$("ap-layer").value,layer:$("ap-layer").value,zone:$("ap-zone").value});
+    e.target.reset();err.textContent="";$("add-box").open=false;if(S.plants[id]){S.open=id;S.editing=true;render()}}
+  catch(x){err.textContent=x&&x.code==="moved"?"The Sheet changed while adding. It has been read again; please add the plant once more.":errCopy(x,"Adding to the Sheet")}
+  finally{btn.disabled=false}});
+
+/* ---------- record view: tags, glance tiles, year strip, callouts ---------- */
+const TAGG=[["soil","Soil builders",["n-fixer","green manure","accumulator","biomass","nurse","erosion control","mulch"]],
+  ["frame","Structure",["groundcover","structure","hedge","timber","coppice","windbreak","shade"]],
+  ["food","Food & medicine",["food","culinary","tea","medicinal","aromatic"]],
+  ["life","Wildlife",["pollinator","wildlife"]]];
+function tagGroup(t){t=t.toLowerCase();for(const [k,,ts] of TAGG)if(ts.includes(t))return k;return"other"}
+function tagChips(str){const box=h("div",{class:"tags"});String(str||"").split(",").map(s=>s.trim()).filter(Boolean).forEach(t=>box.appendChild(h("span",{class:"tag t-"+tagGroup(t)},t)));return box}
+const ROLE_COL={soil:"#A0703F",frame:"#4E8A55",food:"#D9662A",life:"#8A63B8"};
+function rolesOf(p){const out=new Set();String(p.raw.functions||"").split(",").map(t=>t.trim()).filter(Boolean).forEach(t=>{const g=tagGroup(t);if(g!=="other")out.add(g)});return TAGG.map(g=>g[0]).filter(k=>out.has(k))}
+function inRole(p){return S.role==="all"||rolesOf(p).includes(S.role)}
+function roleMarks(p){const rs=rolesOf(p);if(!rs.length)return null;const box=h("span",{class:"roles","aria-label":rs.map(k=>TAGG.find(g=>g[0]===k)[1]).join(", ")});rs.forEach(k=>box.appendChild(h("i",{style:"background:"+ROLE_COL[k],title:TAGG.find(g=>g[0]===k)[1]})));return box}
+function fillRoles(){const box=$("f-role-wrap");box.replaceChildren();box.classList.toggle("active",S.role!=="all");
+  TAGG.forEach(([k,l])=>box.appendChild(h("button",{class:"rl",type:"button","aria-pressed":String(S.role===k),title:S.role===k?"Show all roles":"Show only "+l.toLowerCase(),on:{click:()=>{S.role=S.role===k?"all":k;S.fc=null;render()}}},h("i",{style:"background:"+ROLE_COL[k]}),l)))}
+function svgIcon(kind,on){const s=el("svg",{viewBox:"0 0 24 24",width:22,height:22,"aria-hidden":"true",class:on?"ic on":"ic"});
+  if(kind==="sun"){el("circle",{cx:12,cy:12,r:5,fill:"currentColor"},s);for(let i=0;i<8;i++){const a=i*Math.PI/4;el("line",{x1:12+Math.cos(a)*8,y1:12+Math.sin(a)*8,x2:12+Math.cos(a)*10.5,y2:12+Math.sin(a)*10.5,stroke:"currentColor","stroke-width":2,"stroke-linecap":"round"},s)}}
+  else if(kind==="part"){el("circle",{cx:12,cy:12,r:7,fill:"none",stroke:"currentColor","stroke-width":2},s);el("path",{d:"M12 5a7 7 0 0 1 0 14z",fill:"currentColor"},s)}
+  else if(kind==="shade"){el("circle",{cx:12,cy:12,r:7,fill:"none",stroke:"currentColor","stroke-width":2},s)}
+  else{const n={dry:1,moist:2,wet:3}[kind];for(let i=0;i<n;i++){const x=12+(i-(n-1)/2)*7;el("path",{d:`M${x} 5c-2.6 3.6-4 6-4 8a4 4 0 0 0 8 0c0-2-1.4-4.4-4-8z`,transform:`translate(${x} 12) scale(.62) translate(${-x} -12)`,fill:"currentColor"},s)}}
+  return s}
+function scale(opts,value,cls){const v=String(value||"").toLowerCase(),wrap=h("div",{class:"scale"+(cls?" "+cls:"")});
+  opts.forEach(([k,label,test])=>{const on=test(v);const it=h("span",{class:"sc"+(on?" on":""),title:label});it.appendChild(svgIcon(k,on));it.appendChild(h("small",{},label));wrap.appendChild(it)});return wrap}
+const LIGHT=[["sun","Sun",v=>/(^|, )sun/.test(v)],["part","Part shade",v=>v.includes("part shade")],["shade","Shade",v=>/(^|, )shade/.test(v)]];
+const WATER=[["dry","Dry",v=>v.includes("dry")],["moist","Moist",v=>v.includes("moist")],["wet","Wet",v=>v.includes("wet")]];
+function tile(label,body,sub){return h("div",{class:"tile"},h("div",{class:"tl"},label),typeof body==="string"?h("div",{class:"tv"},body):body,sub?h("div",{class:"ts"},sub):null)}
+function yearStrip(p){
+  const rows=[];
+  if(p.flowerStart!=null)rows.push(["Flowers",m=>inFlower(p,m),p.flowerColour||"#E46FA6"]);
+  if(p.harvest)rows.push(["Harvest",m=>inHarvest(p,m),"var(--ochre)"]);
+  if(p.propagateMonths.length)rows.push(["Propagate",m=>inProp(p,m),"var(--leaf-ever)"]);
+  if(!rows.length)return null;
+  const g=h("div",{class:"year",role:"table","aria-label":"Year at a glance"});
+  g.appendChild(h("span",{}));MON.forEach((m,i)=>g.appendChild(h("span",{class:"ym"+(i+1===NOW?" now":"")},m[0])));
+  rows.forEach(([label,test,col])=>{g.appendChild(h("span",{class:"yl"},label));
+    for(let m=1;m<=12;m++){const on=test(m),prev=on&&test(m===1?12:m-1),next=on&&test(m===12?1:m+1);
+      g.appendChild(h("span",{class:"yc"+(m===NOW?" now":""),title:on?label+" in "+MONTH[m-1]:""},on?h("i",{style:`background:${col};${isLight(col)?"box-shadow:inset 0 0 0 1px #C9BFA0;":""}border-radius:${prev?0:6}px ${next?0:6}px ${next?0:6}px ${prev?0:6}px`}):null))}});
+  return g}
+function renderRecord(d,p){
+  const r=p.raw;
+  if(p.plate&&p.plate.url){const pl=p.plate;
+    const fig=h("figure",{class:"plate-fig"},h("img",{src:pl.url,alt:"Botanical plate of "+(p.sci||p.name),class:"ink"}));
+    const cap=h("figcaption",{});
+    if(pl.match==="genus")cap.appendChild(h("div",{class:"match"},h("span",{class:"badge"},"Same genus"),pl.note?" "+pl.note:""));
+    const det=h("details",{},h("summary",{},"About the drawing"),h("p",{},pl.title||"",pl.artist?" · "+pl.artist:"",". ",pl.page?h("a",{href:pl.page,target:"_blank",rel:"noopener"},"Public domain, Wikimedia Commons"):(pl.credit||""),pl.match!=="genus"&&pl.note?" "+pl.note:""));
+    cap.appendChild(det);fig.appendChild(cap);d.appendChild(fig);
+  }else d.appendChild(h("div",{style:"width:120px;height:146px;margin-bottom:8px"},picture(p)));
+  d.appendChild(h("div",{class:"lockup",style:"letter-spacing:.25em"},[ZN[p.zone]||r.zone,p.layer].filter(Boolean).join(" · ")));
+  d.appendChild(h("h2",{},p.name));
+  d.appendChild(h("div",{class:"sci"},p.sci||"Not identified yet",r.family?h("span",{class:"fam"}," · "+r.family):null));
+  const badges=h("div",{class:"badges"});
+  if(p.status)badges.appendChild(h("span",{class:"pill st"},p.status+(p.qty!=null?" · "+p.qty+" "+(p.qty===1&&p.unit==="plants"?"plant":(p.unit||"")):"")));
+  if(p.check)badges.appendChild(h("span",{class:"badge"},"Name: "+p.check));
+  if(r.invasive&&r.invasive.toLowerCase()!=="no")badges.appendChild(h("span",{class:"pill warn"},"Invasive list: "+r.invasive));
+  d.appendChild(badges);
+  if(r.functions)d.appendChild(tagChips(r.functions));
+  const acts=h("div",{class:"rec-actions"});
+  if(CAN_EDIT&&S.sheets)acts.appendChild(h("button",{class:"btn",on:{click:()=>{S.editing=true;renderDrawer()}}},"Edit"));
+  acts.appendChild(h("a",{href:`https://docs.google.com/spreadsheets/d/${SHEET}/edit#gid=${GID}&range=A${p.row}`,target:"_blank",rel:"noopener"},"Open row "+p.row+" in the Sheet"));
+  d.appendChild(acts);
+  const tiles=h("div",{class:"tiles"});
+  if(p.light)tiles.appendChild(tile("Light",scale(LIGHT,p.light)));
+  if(p.moisture)tiles.appendChild(tile("Water",scale(WATER,p.moisture,"water")));
+  if(p.height!=null)tiles.appendChild(tile("Mature size",p.height+" m",p.spread!=null?p.spread+" m wide":""));
+  if(p.minTemp!=null)tiles.appendChild(tile("Hardy to",p.minTemp+" °C",r.usda?"USDA zone "+r.usda:""));
+  if(p.leaves||r.life)tiles.appendChild(tile("Habit",h("div",{class:"tv sm"},h("span",{class:"dot",style:"background:"+(leafColour({...p},1)||"var(--leaf-dec)")+";margin-right:6px"}),p.leaves||r.life),p.leaves&&r.life?r.life:""));
+  if(r.ph)tiles.appendChild(tile("Soil",h("div",{class:"tv sm"},r.ph)));
+  if(tiles.children.length)d.appendChild(tiles);
+  const yr=yearStrip(p);if(yr)d.appendChild(h("section",{class:"blk"},h("h3",{},"The year"),yr));
+  const call=h("div",{class:"callouts"});
+  if(p.edible)call.appendChild(h("div",{class:"call ok"},h("b",{},"Edible"),h("span",{},p.edible)));
+  if(p.toxic)call.appendChild(h("div",{class:"call bad"},h("b",{},"Caution"),h("span",{},p.toxic)));
+  if(call.children.length)d.appendChild(call);
+  [["How to propagate",p.propagation],["Design note",p.note],["Roots",r.root],["Native to",r.native],["Where",[r.where,r.plantedOn].filter(Boolean).join(", ")],["Notes",r.notes]].filter(x=>x[1]).forEach(([k,v])=>d.appendChild(h("section",{class:"blk"},h("h3",{},k),h("p",{},v))));
+}
+
+/* ---------- record ---------- */
+function openPlant(id){S.open=id;S.editing=false;renderDrawer()}
+function closePlant(){S.open=null;S.editing=false;renderDrawer()}
+function plateFigure(p){const pl=p.plate;
+  const cap=pl.page?h("figcaption",{},pl.title||"",pl.artist?" · "+pl.artist:"",". Public domain, via ",h("a",{href:pl.page,target:"_blank",rel:"noopener"},"Wikimedia Commons"),"."):h("figcaption",{},pl.title||"",pl.artist?" · "+pl.artist:"",". ",pl.credit||"");
+  if(pl.match==="genus")cap.appendChild(h("div",{class:"match"},h("span",{class:"badge"},"Same genus"),pl.note?" "+pl.note:""));
+  else if(pl.note)cap.appendChild(h("div",{class:"match"},pl.note));
+  return h("figure",{class:"plate-fig"},h("img",{src:pl.url,alt:"Botanical plate of "+(p.sci||p.name),class:"ink"}),cap)}
+function renderDrawer(){
+  const d=$("drawer"),p=S.plants[S.open];
+  if(!p){d.hidden=true;return}
+  d.hidden=false;d.replaceChildren();
+  d.appendChild(h("button",{"aria-label":"Close",style:"position:absolute;top:calc(10px + env(safe-area-inset-top,0px));right:14px;font-size:26px;line-height:1;padding:4px 8px;color:var(--muted);cursor:pointer;background:none;border:0",on:{click:closePlant}},"×"));
+  if(S.editing){renderEdit(d,p);return}
+  renderRecord(d,p);
+}
+function renderEdit(d,p){
+  const r=p.raw,id=p.id;
+  d.appendChild(h("div",{class:"lockup",style:"letter-spacing:.25em"},"Editing row "+p.row));
+  d.appendChild(h("h2",{},p.name));
+  d.appendChild(h("div",{class:"rec-actions"},h("button",{class:"btn ghost",on:{click:()=>{S.editing=false;renderDrawer()}}},"Done")));
+  d.appendChild(h("div",{class:"save-note",id:"save-note",role:"status"},"Each change is written to the Sheet as you leave the field."));
+  const text=(key,label,o)=>{o=o||{};if(S.cols[key]==null)return null;const i=o.area?h("textarea",{}):h("input",{type:o.type||"text",...(o.step?{step:o.step}:{}),...(o.type==="number"?{inputmode:"decimal"}:{})});i.value=r[key]||"";
+    i.addEventListener("change",()=>setField(id,key,i.value));return h("label",o.wide||o.area?{class:"wide"}:{},label,i)};
+  const pick=(key,label,opts,blank)=>{if(S.cols[key]==null)return null;const s=h("select",{});fillSelect(s,opts,r[key]||"",blank===undefined?"(blank)":blank);s.addEventListener("change",()=>setField(id,key,s.value));return h("label",{},label,s)};
+  const month=(key,label)=>pick(key,label,MONTH.map((m,i)=>[String(i+1),m]));
+  const group=(title,...kids)=>{const g=h("div",{class:"fgrid"});kids.filter(Boolean).forEach(k=>g.appendChild(k));d.appendChild(h("div",{class:"fgroup"},h("h3",{},title),g))};
+  group("Name",text("name","Common name",{wide:1}),text("sci","Scientific name",{wide:1}),pick("check","Name check",distinct("check",["check","probable","identify"]),"confirmed"),text("family","Family"),text("native","Native range",{wide:1}));
+  group("Stock",pick("status","Status",distinct("status",["Potted","Planted","Seed","Sown","To propagate","To find"])),pick("kind","Kind",distinct("kind")),text("qty","Quantity",{type:"number",step:"any"}),text("unit","Unit"),text("where","Location"),text("plantedOn","Planted on"),text("notes","Notes",{area:1}));
+  group("Growing",pick("layer","Layer",distinct("layer",LAYERS)),pick("zone","Zone",distinct("zone",ZONES.map(z=>z[1]))),text("height","Height (m)",{type:"number",step:"any"}),text("spread","Spread (m)",{type:"number",step:"any"}),text("light","Light"),text("moisture","Moisture"),text("ph","Soil pH"),text("minTemp","Min temp (°C)",{type:"number",step:"any"}),pick("life","Life cycle",distinct("life")),pick("leaves","Leaves",distinct("leaves")),text("root","Root & spread",{wide:1}));
+  let colour=null;if(S.cols.flowerColour!=null){const c=h("input",{type:"color",value:p.flowerColour||"#E46FA6"});c.addEventListener("change",()=>setField(id,"flowerColour",c.value.toUpperCase()));colour=h("label",{},"Flower colour"+(p.flowerColour?"":" (none set)"),c)}
+  let prop=null;if(S.cols.propMonths!=null){const row=h("div",{class:"month-pick"}),on=new Set(p.propagateMonths);
+    MON.forEach((m,i)=>{const b=h("button",{type:"button",class:"mbtn","aria-pressed":String(on.has(i+1)),title:MONTH[i]},m);
+      b.addEventListener("click",()=>{on.has(i+1)?on.delete(i+1):on.add(i+1);b.setAttribute("aria-pressed",String(on.has(i+1)));setField(id,"propMonths",[...on].sort((a,b)=>a-b).join(", "))});row.appendChild(b)});
+    prop=h("label",{class:"wide"},"Propagate in",row)}
+  group("Seasons",month("flowerStart","Flowers from"),month("flowerEnd","Flowers until"),colour,h("span",{}),month("harvestStart","Harvest from"),month("harvestEnd","Harvest until"),prop);
+  group("Uses",text("functions","Functions (comma separated)",{wide:1}),pick("edibility","Edible or toxic",distinct("edibility",["edible","toxic","both","neither"])),text("invasive","PT invasive list"),text("edible","Edible parts",{wide:1}),text("toxic","Toxic parts",{wide:1}),text("propagation","Propagation",{area:1}),text("note","Design notes",{area:1}));
+}
+
+/* ---------- flashcards ---------- */
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function newDeck(){const ids=shuffle(list().filter(p=>inRole(p)&&p.plate&&p.plate.url).map(p=>p.id));S.fc={deck:ids,total:ids.length,done:0,shown:false,side:S.fc?S.fc.side:"picture"}}
+function renderLearn(){
+  fillRoles();
+  const host=$("fc");host.replaceChildren();
+  if(!S.fc||S.fc.deck.some(id=>!S.plants[id]))newDeck();
+  const fc=S.fc,flip=()=>{fc.shown=true;renderLearn()};
+  const sideBtn=h("button",{class:"chip","aria-pressed":"false",on:{click:()=>{fc.side=fc.side==="picture"?"name":"picture";fc.shown=false;renderLearn()}}},fc.side==="picture"?"Showing picture first":"Showing name first");
+  host.appendChild(h("div",{class:"fc-top"},h("span",{},fc.total?fc.done+" of "+fc.total+" known"+(S.zone==="all"?"":" · "+ZN[S.zone]):""),sideBtn));
+  if(!fc.total){host.appendChild(h("p",{class:"empty"},"No plants with a drawing in this zone yet."));return}
+  if(!fc.deck.length){host.appendChild(h("div",{class:"notice",style:"justify-self:center"},h("p",{},"All "+fc.total+" named. "),h("button",{class:"btn",on:{click:()=>{newDeck();renderLearn()}}},"Shuffle and go again")));return}
+  const p=S.plants[fc.deck[0]];
+  if(!fc.shown){
+    const face=fc.side==="picture"?h("span",{},h("img",{src:p.plate.url,alt:"Which plant is this?",class:"ink"}),h("div",{class:"hint"},"Tap to reveal")):h("span",{class:"fc-back"},h("h3",{},p.name),h("div",{class:"hint"},"Picture it, then tap"));
+    const card=h("button",{class:"fc-card",on:{click:flip}},face);host.appendChild(card);return}
+  const facts=[[p.raw.family,p.layer].filter(Boolean).join(" · "),p.flowerStart!=null?"Flowers "+spanLabel(p.flowerStart,p.flowerEnd):"",p.edible?"Edible: "+p.edible:"",p.toxic?"Caution: "+p.toxic:""].filter(Boolean);
+  const ul=h("ul");facts.forEach(t=>ul.appendChild(h("li",{},t)));
+  const back=h("div",{class:"fc-card",style:"cursor:default"},h("div",{class:"fc-back"},h("img",{src:p.plate.url,alt:"",class:"ink",style:fc.side==="name"?"max-height:300px":""}),h("h3",{},p.name),h("div",{class:"sci"},p.sci),
+    p.plate.match==="genus"?h("span",{class:"badge"},"Drawing shows a relative"+(p.plate.note?": "+p.plate.note:"")):null,ul,h("button",{class:"linkbtn",on:{click:()=>openPlant(p.id)}},"Open the record")));
+  host.appendChild(back);
+  const next=known=>{const id=fc.deck.shift();if(known)fc.done++;else fc.deck.splice(Math.min(3,fc.deck.length),0,id);fc.shown=false;renderLearn()};
+  host.appendChild(h("div",{class:"fc-btns"},h("button",{class:"btn ghost",on:{click:()=>next(false)}},"Show it again"),h("button",{class:"btn",on:{click:()=>next(true)}},"I knew it")));
+}
+
+/* ---------- routing and render ---------- */
+function saveX(p,x){XPOS[p.name]=x;if(S.plants[p.id])S.plants[p.id].x=x;try{localStorage.setItem("atlas-x",JSON.stringify(XPOS))}catch(e){}}
+function setStatus(t){$("status").textContent=t}
+function render(force){
+  buildChrome();fillTraits();
+  if(!S.loaded){$("drawer").hidden=true;return}
+  ({cards:renderCards,learn:renderLearn,wheel:renderWheel,layers:renderSection,calendar:renderCalendar})[secOf(S.view)]();
+  const a=document.activeElement,busy=S.editing&&a&&$("drawer").contains(a)&&/^(INPUT|SELECT|TEXTAREA|BUTTON)$/.test(a.tagName);
+  if(force||!busy)renderDrawer();
+}
+function fromHash(){const v=location.hash.slice(1);S.view=VIEWS.includes(v)?v:"cards";render()}
+document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>{location.hash=t.dataset.v}));
+window.addEventListener("hashchange",fromHash);
+$("search").addEventListener("input",e=>{S.search=e.target.value;renderCards()});
+$("f-status").addEventListener("change",e=>{S.status=e.target.value;renderCards()});
+$("f-loc").addEventListener("change",e=>{S.loc=e.target.value;S.fc=null;render()});
+$("zone").addEventListener("change",e=>{S.zone=e.target.value;if(S.zone!=="all")S.secZone=S.zone;S.fc=null;render()});
+["flower","harvest","prop"].forEach(k=>$("t-"+k).addEventListener("change",e=>{S.tracks[k]=e.target.checked;renderCalendar()}));
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){if($("f-fn").open){$("f-fn").open=false;return}if(S.open)closePlant()}});
+/* ---------- trait filters: light, water, layer, functions ---------- */
+const fnTags=p=>String(p.raw.functions||"").split(",").map(t=>t.trim().toLowerCase()).filter(Boolean);
+function passTraits(p){
+  if(S.light.size){const v=p.light.toLowerCase();if(!LIGHT.some(([k,,t])=>S.light.has(k)&&t(v)))return false}
+  if(S.water.size){const v=p.moisture.toLowerCase();if(!WATER.some(([k,,t])=>S.water.has(k)&&t(v)))return false}
+  if(S.layer!=="all"&&p.layer!==S.layer)return false;
+  if(S.fn.size){const ts=new Set(fnTags(p)),sel=[...S.fn];if(S.fnAll?!sel.every(t=>ts.has(t)):!sel.some(t=>ts.has(t)))return false}
+  return true}
+const traitsOn=()=>S.light.size||S.water.size||S.layer!=="all"||S.fn.size;
+function traitChanged(){S.fc=null;render()}
+let fnSig="";
+function fillTraits(){
+  const box=$("f2");box.hidden=!S.loaded||S.view==="layers";if(box.hidden)return;
+  [["f-light",LIGHT,S.light],["f-water",WATER,S.water]].forEach(([id,opts,set])=>{const g=$(id);g.replaceChildren();
+    opts.forEach(([k,label])=>{const on=set.has(k);g.appendChild(h("button",{class:"ib",type:"button","aria-pressed":String(on),"aria-label":label,title:label,on:{click:()=>{on?set.delete(k):set.add(k);traitChanged()}}},svgIcon(k,on)))})});
+  const ls=$("f-layer"),present=new Set(Object.values(S.plants).map(p=>p.layer).filter(Boolean));
+  fillSelect(ls,[["all","Any layer"],...LAYERS.filter(l=>present.has(l)).map(l=>[l,l[0].toUpperCase()+l.slice(1)]),...[...present].filter(l=>!LAYERS.includes(l)).map(l=>[l,l[0].toUpperCase()+l.slice(1)])],S.layer);
+  const count={};Object.values(S.plants).forEach(p=>fnTags(p).forEach(t=>count[t]=(count[t]||0)+1));
+  const sig=Object.keys(count).sort().join("|");
+  if(sig!==fnSig){fnSig=sig;const panel=$("f-fn-panel");panel.replaceChildren();
+    const groups=TAGG.map(([k,l,ts])=>[k,l,ts.filter(t=>count[t]).sort((a,b)=>count[b]-count[a])]);
+    groups.push(["other","Other",Object.keys(count).filter(t=>tagGroup(t)==="other").sort((a,b)=>count[b]-count[a])]);
+    groups.filter(g=>g[2].length).forEach(([k,l,ts])=>{const fg=h("div",{class:"fg"},h("h4",{},ROLE_COL[k]?h("i",{style:"background:"+ROLE_COL[k]}):null,l)),opts=h("div",{class:"opts"});
+      ts.forEach(t=>{const cb=h("input",{type:"checkbox",value:t});cb.addEventListener("change",()=>{cb.checked?S.fn.add(t):S.fn.delete(t);traitChanged()});
+        opts.appendChild(h("label",{},cb,h("span",{},t[0].toUpperCase()+t.slice(1)),h("small",{},String(count[t]))))});
+      fg.appendChild(opts);panel.appendChild(fg)});
+    const any=h("button",{class:"chip",type:"button",on:{click:()=>{S.fnAll=false;traitChanged()}}},"Any"),all=h("button",{class:"chip",type:"button",on:{click:()=>{S.fnAll=true;traitChanged()}}},"All");
+    panel.appendChild(h("div",{class:"fmatch"},h("span",{},"Show plants with"),any,all,h("span",{},"ticked"),h("span",{class:"sp"}),h("button",{class:"linkbtn",type:"button",on:{click:()=>{S.fn.clear();traitChanged()}}},"Untick all")));
+    panel._match=[any,all]}
+  const panel=$("f-fn-panel");panel.querySelectorAll("input[type=checkbox]").forEach(c=>c.checked=S.fn.has(c.value));
+  if(panel._match){panel._match[0].setAttribute("aria-pressed",String(!S.fnAll));panel._match[1].setAttribute("aria-pressed",String(S.fnAll))}
+  $("f-fn-sum").textContent=S.fn.size?"Functions · "+S.fn.size:"Functions";$("f-fn").classList.toggle("on",S.fn.size>0);
+  $("f-clear").hidden=!traitsOn()}
+$("f-layer").addEventListener("change",e=>{S.layer=e.target.value;traitChanged()});
+$("f-clear").addEventListener("click",()=>{S.light.clear();S.water.clear();S.layer="all";S.fn.clear();$("f-fn").open=false;traitChanged()});
+document.addEventListener("click",e=>{const d=$("f-fn");if(d.open&&!d.contains(e.target))d.open=false});
+fromHash();
+
+/* ---------- start: draw from the copy on this device at once, then look for fresh rows ---------- */
+(async()=>{
+  S.sheets=Shell.sheets;
+  if(CAN_EDIT)$("lede").textContent+=" A change made here is written to the same row.";
+  const plates=fetch("plates.json").then(r=>r.ok?r.json():{}).catch(()=>({}));
+  const kept=await Shell.store.get(KEEP);
+  S.plates=await plates;
+  if(kept&&kept.values)onRead({values:kept.values},kept.stamp,false);
+  loadOnce();
+  /* Back in the foreground, or back in signal: read again when the copy is no longer fresh. */
+  Shell.onWake(()=>{if(Date.now()-S.stamp>60000)loadOnce()});
+  /* While the app stays open, re-read every two minutes if Google will answer without a sign-in window. */
+  setInterval(()=>{if(document.visibilityState==="visible"&&Shell.auth.hasToken()&&navigator.onLine!==false)loadOnce()},120000);
+})();
+</script>
+
+</body></html>
