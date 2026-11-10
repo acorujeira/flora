@@ -19,7 +19,8 @@ The plant data is never in this repo. It stays in the Sheet, behind the Google l
 
 ## Changing things
 
-- After changing any file, raise `VERSION` in `sw.js` so every device fetches the new files.
+- This repo is Flora's only home for code (since 10 Nov 2026). The old Claude artifact is a frozen backup; never edit it.
+- After changing any file, raise `VERSION` in `sw.js`. Every device fetches the new files and reloads itself once. Raise `PLATES_VERSION` only when plate images change.
 - Editing from the app is switched off by one flag, `CAN_EDIT` in `index.html`. Turning it on also needs `allowWrites` and the wider `spreadsheets` scope in `shell/config.js`.
 - To try it on the Mac: `python3 -m http.server 8765` in this folder, then open `http://localhost:8765`.
 

@@ -1,9 +1,10 @@
 /* Service worker: keeps the app shell and the botanical plates on the device, so the app
    opens fast and works with no signal. It never touches Google's sign-in or the Sheets API;
    the plant data has its own offline copy in IndexedDB.
-   Change VERSION to make every device fetch the shell and plates afresh. */
-const VERSION = "v6";
-const SHELL = "flora-shell-" + VERSION, PLATES = "flora-plates-" + VERSION, FONTS = "flora-fonts-v1";
+   Change VERSION after any code change: every device fetches the shell afresh and reloads once.
+   Change PLATES_VERSION only when plate images change, since it makes every device download them all again. */
+const VERSION = "v7", PLATES_VERSION = "v6";
+const SHELL = "flora-shell-" + VERSION, PLATES = "flora-plates-" + PLATES_VERSION, FONTS = "flora-fonts-v1";
 const SHELL_FILES = ["./", "index.html", "manifest.webmanifest", "plates.json",
   "shell/config.js", "shell/store.js", "shell/auth.js", "shell/sheets.js", "shell/shell.js",
   "icons/icon-192.png", "icons/icon-512.png", "icons/icon-maskable-512.png", "icons/apple-touch-icon.png"];
