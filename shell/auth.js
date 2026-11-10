@@ -75,7 +75,9 @@
       if (!opts.choose && s.token && s.exp > Date.now()) return s.token;
       if (!cfg.clientId) throw err("not_configured");
       if (navigator.onLine === false) throw err("offline");
-      if (opts.interactive) return request(opts.choose ? "select_account" : "", false);
+      /* The first sign-in on a device shows Google's account list, so the right account is a choice
+         and never a guess. Later renewals skip it. */
+      if (opts.interactive) return request(opts.choose || !s.ever ? "select_account" : "", false);
       if (!s.ever || Date.now() - lastQuiet < QUIET_GAP) throw err("signin_required");
       lastQuiet = Date.now();
       return request("", true);

@@ -171,7 +171,7 @@ details.add summary{cursor:pointer;font-family:var(--font-head);font-size:17px;c
 .rl[aria-pressed="true"]{color:var(--ink);border-bottom-color:var(--ink)}
 .legend-roles.active .rl:not([aria-pressed="true"]){opacity:.5}
 .rl:focus-visible{outline:2px solid var(--ochre-deep);outline-offset:2px}
-@media (max-width:520px){.bar .filters input[type=search]{flex:1 1 100%;max-width:none}.bar .fsel{flex:1 1 0;min-width:0}.fsel select{width:100%}.fsel .fl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.filters #count{flex:1 1 100%}}
+@media (max-width:520px){.bar .filters input[type=search]{flex:1 1 100%;max-width:none}.bar .fsel{flex:1 1 0;min-width:0}.fsel select{width:100%}.fsel .fl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.filters #count{flex:1 1 100%}.filters2 .fsel{flex:0 0 auto}.filters2 .fsel select{width:auto}}
 .roles{position:absolute;top:8px;left:8px;display:flex;gap:3px}
 .roles i{width:9px;height:9px;border-radius:3px;display:block}
 .tag.t-soil::before,.tag.t-frame::before,.tag.t-food::before,.tag.t-life::before{content:"";display:inline-block;width:7px;height:7px;border-radius:2px;margin-right:6px;vertical-align:1px}
@@ -844,7 +844,7 @@ $("add-plant").addEventListener("submit",async e=>{e.preventDefault();const err=
   const name=$("ap-name").value.trim();if(!name){err.textContent="Give the plant a name.";return}
   const btn=e.target.querySelector("button");btn.disabled=true;err.textContent="Adding to the Sheet…";
   try{const id=await addPlant({name,sci:$("ap-sci").value.trim(),status:$("ap-status").value,qty:$("ap-qty").value,unit:"plants",kind:$("ap-layer").value,layer:$("ap-layer").value,zone:$("ap-zone").value});
-    e.target.reset();err.textContent="";$("add-box").open=false;if(S.plants[id]){S.open=id;S.editing=true;render()}}
+    e.target.reset();err.textContent="";$("add-box").open=false;if(S.plants[id]){openPlant(id);S.editing=true;render()}}
   catch(x){err.textContent=x&&x.code==="moved"?"The Sheet changed while adding. It has been read again; please add the plant once more.":errCopy(x,"Adding to the Sheet")}
   finally{btn.disabled=false}});
 
@@ -923,8 +923,9 @@ function renderRecord(d,p){
 }
 
 /* ---------- record ---------- */
-function openPlant(id){S.open=id;S.editing=false;renderDrawer()}
-function closePlant(){S.open=null;S.editing=false;renderDrawer()}
+function openPlant(id){if(!S.open)history.pushState({flora:"plant"},"");S.open=id;S.editing=false;renderDrawer()}
+function closePlant(){if(history.state&&history.state.flora==="plant"){history.back();return}S.open=null;S.editing=false;renderDrawer()}
+window.addEventListener("popstate",()=>{if(S.open){S.open=null;S.editing=false;renderDrawer()}});
 function plateFigure(p){const pl=p.plate;
   const cap=pl.page?h("figcaption",{},pl.title||"",pl.artist?" · "+pl.artist:"",". Public domain, via ",h("a",{href:pl.page,target:"_blank",rel:"noopener"},"Wikimedia Commons"),"."):h("figcaption",{},pl.title||"",pl.artist?" · "+pl.artist:"",". ",pl.credit||"");
   if(pl.match==="genus")cap.appendChild(h("div",{class:"match"},h("span",{class:"badge"},"Same genus"),pl.note?" "+pl.note:""));
@@ -934,7 +935,7 @@ function renderDrawer(){
   const d=$("drawer"),p=S.plants[S.open];
   if(!p){d.hidden=true;return}
   d.hidden=false;d.replaceChildren();
-  d.appendChild(h("button",{"aria-label":"Close",style:"position:absolute;top:calc(10px + env(safe-area-inset-top,0px));right:14px;font-size:26px;line-height:1;padding:4px 8px;color:var(--muted);cursor:pointer;background:none;border:0",on:{click:closePlant}},"×"));
+  d.appendChild(h("button",{"aria-label":"Close",style:"position:absolute;top:calc(8px + env(safe-area-inset-top,0px));right:8px;width:48px;height:48px;display:grid;place-items:center;font-size:30px;line-height:1;padding:0;color:var(--ink);cursor:pointer;background:var(--card);border:1px solid var(--rule);border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,.12);z-index:2",on:{click:closePlant}},"×"));
   if(S.editing){renderEdit(d,p);return}
   renderRecord(d,p);
 }
