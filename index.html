@@ -945,7 +945,7 @@ function renderDrawer(){
   const d=$("drawer"),p=S.plants[S.open];
   if(!p){d.hidden=true;return}
   d.hidden=false;d.replaceChildren();
-  d.appendChild(h("button",{"aria-label":"Close",style:"position:absolute;top:calc(8px + env(safe-area-inset-top,0px));right:8px;width:48px;height:48px;display:grid;place-items:center;font-size:30px;line-height:1;padding:0;color:var(--ink);cursor:pointer;background:var(--card);border:1px solid var(--rule);border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,.12);z-index:2",on:{click:closePlant}},"×"));
+  d.appendChild(h("button",{"aria-label":"Close",style:"position:sticky;top:calc(8px + env(safe-area-inset-top,0px));margin:0 0 -48px auto;width:48px;height:48px;display:grid;place-items:center;font-size:30px;line-height:1;padding:0;color:var(--ink);cursor:pointer;background:var(--card);border:1px solid var(--rule);border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,.12);z-index:2",on:{click:closePlant}},"×"));
   if(S.editing){renderEdit(d,p);return}
   renderRecord(d,p);
 }

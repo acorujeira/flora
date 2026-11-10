@@ -2,7 +2,7 @@
    opens fast and works with no signal. It never touches Google's sign-in or the Sheets API;
    the plant data has its own offline copy in IndexedDB.
    Change VERSION to make every device fetch the shell and plates afresh. */
-const VERSION = "v4";
+const VERSION = "v5";
 const SHELL = "flora-shell-" + VERSION, PLATES = "flora-plates-" + VERSION, FONTS = "flora-fonts-v1";
 const SHELL_FILES = ["./", "index.html", "manifest.webmanifest", "plates.json",
   "shell/config.js", "shell/store.js", "shell/auth.js", "shell/sheets.js", "shell/shell.js",
@@ -25,6 +25,15 @@ function staleWhileRevalidate(req, cacheName, opts) {
     return fresh;
   }));
 }
+/* Fetch the page fresh so updates show on the next open; fall back to the saved copy
+   if there is no signal, or the network takes longer than `wait` milliseconds. */
+function networkFirst(req, cacheName, wait) {
+  return caches.open(cacheName).then(cache => {
+    const fresh = fetch(req).then(res => { if (res && res.ok) cache.put(req, res.clone()); return res; });
+    const slow = new Promise(r => setTimeout(r, wait)).then(() => cache.match(req)).then(hit => hit || fresh);
+    return Promise.race([fresh.catch(() => cache.match(req)), slow]);
+  });
+}
 /* Answer from the cache; fetch only what is missing. */
 function cacheFirst(req, cacheName) {
   return caches.open(cacheName).then(cache => cache.match(req).then(hit => hit ||
@@ -37,7 +46,7 @@ self.addEventListener("fetch", e => {
   const url = new URL(req.url);
   if (url.origin === self.location.origin) {
     if (url.pathname.includes("/plates/")) e.respondWith(cacheFirst(req, PLATES));
-    else if (req.mode === "navigate") e.respondWith(staleWhileRevalidate(new Request("index.html"), SHELL).catch(() => caches.match("index.html")));
+    else if (req.mode === "navigate") e.respondWith(networkFirst(new Request("index.html"), SHELL, 3000));
     else e.respondWith(staleWhileRevalidate(req, SHELL, { ignoreSearch: true }));
   } else if (url.hostname === "fonts.googleapis.com") e.respondWith(staleWhileRevalidate(req, FONTS));
   else if (url.hostname === "fonts.gstatic.com") e.respondWith(cacheFirst(req, FONTS));
