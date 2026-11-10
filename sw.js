@@ -2,7 +2,7 @@
    opens fast and works with no signal. It never touches Google's sign-in or the Sheets API;
    the plant data has its own offline copy in IndexedDB.
    Change VERSION to make every device fetch the shell and plates afresh. */
-const VERSION = "v3";
+const VERSION = "v4";
 const SHELL = "flora-shell-" + VERSION, PLATES = "flora-plates-" + VERSION, FONTS = "flora-fonts-v1";
 const SHELL_FILES = ["./", "index.html", "manifest.webmanifest", "plates.json",
   "shell/config.js", "shell/store.js", "shell/auth.js", "shell/sheets.js", "shell/shell.js",
