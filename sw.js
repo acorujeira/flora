@@ -3,14 +3,16 @@
    the plant data has its own offline copy in IndexedDB.
    Change VERSION after any code change: every device fetches the shell afresh and reloads once.
    Change PLATES_VERSION only when plate images change, since it makes every device download them all again. */
-const VERSION = "v7", PLATES_VERSION = "v6";
+const VERSION = "v8", PLATES_VERSION = "v6";
 const SHELL = "flora-shell-" + VERSION, PLATES = "flora-plates-" + PLATES_VERSION, FONTS = "flora-fonts-v1";
 const SHELL_FILES = ["./", "index.html", "manifest.webmanifest", "plates.json",
   "shell/config.js", "shell/store.js", "shell/auth.js", "shell/sheets.js", "shell/shell.js",
   "icons/icon-192.png", "icons/icon-512.png", "icons/icon-maskable-512.png", "icons/apple-touch-icon.png"];
 
 self.addEventListener("install", e => {
-  e.waitUntil(caches.open(SHELL).then(c => c.addAll(SHELL_FILES)).then(() => self.skipWaiting()));
+  /* cache: "reload" skips the browser's own HTTP cache (GitHub Pages keeps files up to 10 minutes),
+     so a new version stores the new files. */
+  e.waitUntil(caches.open(SHELL).then(c => c.addAll(SHELL_FILES.map(u => new Request(u, { cache: "reload" })))).then(() => self.skipWaiting()));
 });
 self.addEventListener("activate", e => {
   e.waitUntil(caches.keys()
@@ -21,7 +23,7 @@ self.addEventListener("activate", e => {
 /* Answer from the cache at once and fetch a fresh copy for next time. */
 function staleWhileRevalidate(req, cacheName, opts) {
   return caches.open(cacheName).then(cache => cache.match(req, opts).then(hit => {
-    const fresh = fetch(req).then(res => { if (res && res.ok) cache.put(req, res.clone()); return res; });
+    const fresh = fetch(req, { cache: "no-cache" }).then(res => { if (res && res.ok) cache.put(req, res.clone()); return res; });
     if (hit) { fresh.catch(() => {}); return hit; }
     return fresh;
   }));
@@ -30,7 +32,7 @@ function staleWhileRevalidate(req, cacheName, opts) {
    if there is no signal, or the network takes longer than `wait` milliseconds. */
 function networkFirst(req, cacheName, wait) {
   return caches.open(cacheName).then(cache => {
-    const fresh = fetch(req).then(res => { if (res && res.ok) cache.put(req, res.clone()); return res; });
+    const fresh = fetch(req, { cache: "no-cache" }).then(res => { if (res && res.ok) cache.put(req, res.clone()); return res; });
     const slow = new Promise(r => setTimeout(r, wait)).then(() => cache.match(req)).then(hit => hit || fresh);
     return Promise.race([fresh.catch(() => cache.match(req)), slow]);
   });
