@@ -3,7 +3,7 @@ import re, os, shutil
 APP = '/home/claude/flora'
 h = open('site/index.html').read()
 h = h.replace('"plates/', '"../plates/')
-h = h.replace('<button id="btn-index">places</button>', '<button id="btn-index">places</button>\n  <a href="../">plants</a>')
+h = h.replace('<button id="btn-index">places</button>', '<button id="btn-index">places</button>\n  <a href="/">plants</a>')
 h = h.replace('<a class="wide" href="https://winternest.acorujeira.pt">stay</a>\n', '')
 h = h.replace('<link rel="preconnect"', '<link rel="manifest" href="../manifest.webmanifest">\n<meta name="theme-color" content="#E4DDC5">\n<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">\n<link rel="preconnect"', 1)
 h = h.replace('</body>', '''<script>
@@ -11,7 +11,7 @@ h = h.replace('</body>', '''<script>
 if ("serviceWorker" in navigator) addEventListener("load", () => navigator.serviceWorker.register("../sw.js", { scope: "../" }).catch(() => {}));
 </script>
 </body>''')
-assert 'href="../"' in h and '../sw.js' in h
+assert 'href="/"' in h and '../sw.js' in h
 open(f'{APP}/map/index.html', 'w').write(h)
 used = sorted(set(re.findall(r'img/[\w.-]+\.jpg', h)))
 for f in os.listdir(f'{APP}/map/img'):
