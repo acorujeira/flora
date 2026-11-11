@@ -16,6 +16,7 @@ The plant data is never in this repo. It stays in the Sheet, behind the Google l
 - `sw.js`: the service worker. It keeps the shell and the plates on the device.
 - `manifest.webmanifest`, `icons/`: the app's name, colours and owl icon.
 - `plates.json`, `plates/`: the botanical plates and their credits.
+- `map/`: the land map lens, a second page in the same app. `map/index.html` is built, never edited by hand: geometry from the QGIS project, place text written for the public, photos in `map/img/`, plant cards from a snapshot of the plant Sheet at build time, plates shared with Flora from `plates/`. The sources and build scripts are in `map/src/`; the Sheet snapshot is fetched when building and never committed. The map names no place smaller than the Minho and carries no coordinates.
 
 ## Changing things
 

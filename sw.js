@@ -3,9 +3,9 @@
    the plant data has its own offline copy in IndexedDB.
    Change VERSION after any code change: every device fetches the shell afresh and reloads once.
    Change PLATES_VERSION only when plate images change, since it makes every device download them all again. */
-const VERSION = "v8", PLATES_VERSION = "v6";
+const VERSION = "v9", PLATES_VERSION = "v6";
 const SHELL = "flora-shell-" + VERSION, PLATES = "flora-plates-" + PLATES_VERSION, FONTS = "flora-fonts-v1";
-const SHELL_FILES = ["./", "index.html", "manifest.webmanifest", "plates.json",
+const SHELL_FILES = ["./", "index.html", "manifest.webmanifest", "plates.json", "map/", "map/index.html",
   "shell/config.js", "shell/store.js", "shell/auth.js", "shell/sheets.js", "shell/shell.js",
   "icons/icon-192.png", "icons/icon-512.png", "icons/icon-maskable-512.png", "icons/apple-touch-icon.png"];
 
@@ -49,6 +49,7 @@ self.addEventListener("fetch", e => {
   const url = new URL(req.url);
   if (url.origin === self.location.origin) {
     if (url.pathname.includes("/plates/")) e.respondWith(cacheFirst(req, PLATES));
+    else if (req.mode === "navigate" && url.pathname.includes("/map")) e.respondWith(networkFirst(new Request("map/index.html"), SHELL, 3000));
     else if (req.mode === "navigate") e.respondWith(networkFirst(new Request("index.html"), SHELL, 3000));
     else e.respondWith(staleWhileRevalidate(req, SHELL, { ignoreSearch: true }));
   } else if (url.hostname === "fonts.googleapis.com") e.respondWith(staleWhileRevalidate(req, FONTS));
