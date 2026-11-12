@@ -186,7 +186,11 @@ def clean(o):
     return o
 PLANTS = clean(PLANTS)
 blob = json.dumps(out, ensure_ascii=False) + json.dumps(INTRO, ensure_ascii=False) + json.dumps(PLANTS, ensure_ascii=False)
-for bad in ['escuta', 'bird station', 'birdnet', '—', '–', 'TODO', 'Arcos', 'Valdevez', 'Vilar', 'Lobos', 'Ermelo', 'Jorge', '60 kV', 'E-REDES', 'EDP', '41.8', '-8.3', 'no generator']:
+# Words the public map must never contain. The private part of the list (place names, unreleased
+# projects) stays out of this public repo: keep it in banned_words.txt beside this script, one term per line.
+BANNED = ['—', '–', 'TODO', 'no generator'] + [l.strip() for l in open('banned_words.txt', encoding='utf-8') if l.strip() and not l.startswith('#')]
+assert len(BANNED) > 4, 'banned_words.txt is missing its terms'
+for bad in BANNED:
     assert bad.lower() not in blob.lower(), bad
 
 html = open('template3.html').read()
