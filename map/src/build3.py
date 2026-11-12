@@ -84,7 +84,7 @@ PLACES = [
         "When the water silo runs low, a small pump lifts creek water up to it."]),
  dict(id='kitchen', name='The Kitchen', sub='shared by everyone on the land', x=104.3, y=94.2, a='s', hit=dict(buildings=['Kitchen']),
   photos=[I('kitchen-1.jpg')],
-  body=["The communal kitchen sits just below the yurt. Everyone living on the land cooks and eats here, and sparkling spring water runs from the tap.",
+  body=["The communal kitchen sits just below the yurt. Everyone living on the land cooks and eats here.",
         "Each day starts with a check-in, and every new arrival gets a warm orientation."]),
  dict(id='lamppost', name='The Lamp Post', label='lamp post', sub='news carried in light', x=86.3, y=88.4, a='w', hit=dict(circle=[86.3, 88.4, 3.5]),
   photos=[I('web-lamp.jpg')],

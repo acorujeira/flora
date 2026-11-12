@@ -3,7 +3,7 @@
    the plant data has its own offline copy in IndexedDB.
    Change VERSION after any code change: every device fetches the shell afresh and reloads once.
    Change PLATES_VERSION only when plate images change, since it makes every device download them all again. */
-const VERSION = "v11", PLATES_VERSION = "v6";
+const VERSION = "v12", PLATES_VERSION = "v6";
 const SHELL = "flora-shell-" + VERSION, PLATES = "flora-plates-" + PLATES_VERSION, FONTS = "flora-fonts-v1";
 const SHELL_FILES = ["./", "index.html", "manifest.webmanifest", "plates.json", "map/", "map/index.html",
   "shell/config.js", "shell/store.js", "shell/auth.js", "shell/sheets.js", "shell/shell.js",
