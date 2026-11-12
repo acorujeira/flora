@@ -1,6 +1,6 @@
-# Flora da Corujeira
+# Corujeira
 
-The plants of A Corujeira as an installable web app: a wall of plant cards with botanical plates, read from one Google Sheet with your own Google login. It works with no signal, from the last copy it read.
+The A Corujeira app, installable from the browser. It has two lenses so far: Flora, a wall of plant cards with botanical plates read from one Google Sheet with your own Google login, and the land map in `map/`. The app was called Flora until 12 Nov 2026; Flora is now the name of its plants lens. It works with no signal, from the last copy it read.
 
 The plant data is never in this repo. It stays in the Sheet, behind the Google login, and in a private copy on each device.
 

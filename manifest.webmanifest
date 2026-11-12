@@ -1,7 +1,7 @@
 {
-  "name": "Flora da Corujeira",
-  "short_name": "Flora",
-  "description": "The plants of A Corujeira, with their botanical plates.",
+  "name": "A Corujeira",
+  "short_name": "Corujeira",
+  "description": "The land of A Corujeira in one app: the plants with their botanical plates, and the map of the land.",
   "lang": "en-GB",
   "start_url": "./",
   "scope": "./",
